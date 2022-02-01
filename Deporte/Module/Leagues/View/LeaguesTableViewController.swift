@@ -57,7 +57,6 @@ extension LeaguesTableViewController{
     
     // MARK: - Table view data source
 
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 108
     }
@@ -73,12 +72,13 @@ extension LeaguesTableViewController{
 
         // Configure the cell...
         cell.sportItem = leagues[indexPath.row]
-        
-
         return cell
     }
     
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("HEllo from cell Leages")
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
