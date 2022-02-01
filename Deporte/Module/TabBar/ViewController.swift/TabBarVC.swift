@@ -51,7 +51,7 @@ class TabBarVC: UIViewController {
     func showHome(){
         contentView.addSubview(Home!.view)
         addChild(Home!)
-        self.navigationItem.title = "Sports"
+        self.navigationItem.title = "Deporte"
         homeImg.tintColor = UIColor.white
         favImg.tintColor = UIColor.gray
     }

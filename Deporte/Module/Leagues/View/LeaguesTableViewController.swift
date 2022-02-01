@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LeaguesTableViewController: UITableViewController {
     
@@ -24,14 +25,13 @@ class LeaguesTableViewController: UITableViewController {
 //        Sport(image: "https://png.pngitem.com/pimgs/s/415-4157244_transparent-anime-christmas-png-christmas-tree-png-download.png", title: "Rugby")
 //    ]
     
-    var leagues : [Sport]!
+    var leagues : [MySport]!
     
     
     
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -59,7 +59,7 @@ extension LeaguesTableViewController{
 
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 108
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

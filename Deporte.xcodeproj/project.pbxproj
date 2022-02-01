@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B30CFF11169ED2CBFAA939C /* Pods_Deporte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3007A20987D7926817DA764D /* Pods_Deporte.framework */; };
+		B60A3D2F27A8133100BAE168 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3D2E27A8133100BAE168 /* HomePresenter.swift */; };
+		B60A3D3327A817D100BAE168 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3D3227A817D100BAE168 /* NetworkServices.swift */; };
+		B60A3D3927A8ABAA00BAE168 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3D3827A8ABAA00BAE168 /* UIView.swift */; };
 		B61C39FE27A4608600B2C8AA /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61C39FD27A4608600B2C8AA /* TabBarVC.swift */; };
 		B61C3A0027A462C100B2C8AA /* SportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61C39FF27A462C100B2C8AA /* SportsCollectionViewCell.swift */; };
 		B61F7F5D27A419AD002C014F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F7F5C27A419AD002C014F /* AppDelegate.swift */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		231CEE56EE24545B8C39B2DB /* Pods-Deporte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Deporte.release.xcconfig"; path = "Target Support Files/Pods-Deporte/Pods-Deporte.release.xcconfig"; sourceTree = "<group>"; };
 		3007A20987D7926817DA764D /* Pods_Deporte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Deporte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B60A3D2E27A8133100BAE168 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		B60A3D3227A817D100BAE168 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
+		B60A3D3827A8ABAA00BAE168 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B61C39FD27A4608600B2C8AA /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarVC.swift; path = ViewController.swift/TabBarVC.swift; sourceTree = "<group>"; };
 		B61C39FF27A462C100B2C8AA /* SportsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCollectionViewCell.swift; sourceTree = "<group>"; };
 		B61F7F5927A419AD002C014F /* Deporte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deporte.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +70,22 @@
 				3007A20987D7926817DA764D /* Pods_Deporte.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B60A3D3127A817B100BAE168 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3D3227A817D100BAE168 /* NetworkServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B60A3D3727A8AB8C00BAE168 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3D3827A8ABAA00BAE168 /* UIView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		B61C39F927A45D2A00B2C8AA /* View */ = {
@@ -114,6 +136,7 @@
 		B61F7F5B27A419AD002C014F /* Deporte */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3D3727A8AB8C00BAE168 /* Helpers */,
 				B6D2C59C27A49A660047D06A /* Model */,
 				B61F7F7427A44747002C014F /* Module */,
 				B61F7F5C27A419AD002C014F /* AppDelegate.swift */,
@@ -198,6 +221,7 @@
 		B6D2C59B27A499580047D06A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3D2E27A8133100BAE168 /* HomePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -205,6 +229,7 @@
 		B6D2C59C27A49A660047D06A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3D3127A817B100BAE168 /* Services */,
 				B6D2C59F27A49A890047D06A /* Sport.swift */,
 			);
 			path = Model;
@@ -335,13 +360,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B61F7F5D27A419AD002C014F /* AppDelegate.swift in Sources */,
+				B60A3D3327A817D100BAE168 /* NetworkServices.swift in Sources */,
 				B6D2C5A027A49A890047D06A /* Sport.swift in Sources */,
 				B61F7F5F27A419AD002C014F /* SceneDelegate.swift in Sources */,
+				B60A3D2F27A8133100BAE168 /* HomePresenter.swift in Sources */,
 				B61F7F7A27A44804002C014F /* HomeSportsViewController.swift in Sources */,
 				B61C3A0027A462C100B2C8AA /* SportsCollectionViewCell.swift in Sources */,
 				B61F7F6727A419AD002C014F /* Deporte.xcdatamodeld in Sources */,
 				B6B09B9927A60B7A0024F5C7 /* LeaguesTableViewCell.swift in Sources */,
 				B61F7F7C27A448C7002C014F /* FavouritesTableViewController.swift in Sources */,
+				B60A3D3927A8ABAA00BAE168 /* UIView.swift in Sources */,
 				B61C39FE27A4608600B2C8AA /* TabBarVC.swift in Sources */,
 				B61F7F7E27A449EA002C014F /* LeaguesTableViewController.swift in Sources */,
 				B6D2C5A227A4A64B0047D06A /* FavTableViewCell.swift in Sources */,

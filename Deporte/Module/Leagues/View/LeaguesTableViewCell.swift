@@ -17,12 +17,12 @@ class LeaguesTableViewCell: UITableViewCell {
     
     //MARK: -- Propertiest
     
-    var sportItem : Sport?{
+    var sportItem : MySport?{
         didSet{
             guard let sportItem = sportItem else{return}
             leagueCellImg.kf.indicatorType = .activity
-            leagueCellImg.kf.setImage(with: URL(string: sportItem.image ?? "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"))
-            leagueCellTitle.text = sportItem.title
+            leagueCellImg.kf.setImage(with: URL(string: sportItem.strSportThumb ?? "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"))
+            leagueCellTitle.text = sportItem.strSport
         }
     }
     
@@ -32,6 +32,7 @@ class LeaguesTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setRoundedForImgCell(myImg : leagueCellImg)
+        viewCellUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,6 +56,17 @@ class LeaguesTableViewCell: UITableViewCell {
         myImg.frame = newFrame;
         myImg.center = saveCenter
         myImg.clipsToBounds = true
+    }
+    func viewCellUI(){
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        //for actual cell
+        self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        self.layer.shadowRadius = 10.0
+        self.layer.shadowOpacity = 1.0
+        self.layer.masksToBounds = false
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+        self.clipsToBounds = false
+        self.contentView.layer.masksToBounds = true
     }
 
 }

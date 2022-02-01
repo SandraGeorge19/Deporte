@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FavouritesTableViewController: UITableViewController {
     
@@ -31,6 +32,14 @@ class FavouritesTableViewController: UITableViewController {
 
            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
            // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        func fetchAllSportsData(){
+            let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/all_sports.php")
+            Alamofire.request(url!).response { (response) in
+                //let jsonResponse = response.data
+               debugPrint(response)
+                
+            }
+        }
        }
     
     //MARK: -- IBActions
@@ -60,8 +69,8 @@ extension FavouritesTableViewController{
         // Configure the cell...
         cell.sportItem = sports[indexPath.row]
         
-        print(sports[indexPath.row].title ?? "jjj")
-        print("HElOooooooooo")
+        //print(sports[indexPath.row].title ?? "")
+        //print("HElOooooooooo")
 
         return cell
     }
