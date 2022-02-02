@@ -526,27 +526,21 @@
 				B61F7F5D27A419AD002C014F /* AppDelegate.swift in Sources */,
 				B6C772F627A9EE89005A6821 /* AllSportsAPI.swift in Sources */,
 				B60A3D3327A817D100BAE168 /* NetworkServices.swift in Sources */,
-<<<<<<< Updated upstream
 				B6C772F827AA010A005A6821 /* LeaguesPresenter.swift in Sources */,
 				B6D2C5A027A49A890047D06A /* Sport.swift in Sources */,
 				B6C7730127AA0618005A6821 /* LeaguesNetworking.swift in Sources */,
-=======
 				2B51A48527AA8BC000642B0F /* UpComingTableViewCell.swift in Sources */,
 				2B51A49427AA8CA200642B0F /* UpComingEventCollectionViewCell.swift in Sources */,
 				2B51A48927AA8BE400642B0F /* LatestEventsTableViewCell.swift in Sources */,
 				B6D2C5A027A49A890047D06A /* Sport.swift in Sources */,
 				2B51A48D27AA8C2500642B0F /* TeamsTableViewCell.swift in Sources */,
->>>>>>> Stashed changes
 				B61F7F5F27A419AD002C014F /* SceneDelegate.swift in Sources */,
 				B6C772EF27A9D724005A6821 /* TargetType.swift in Sources */,
 				B60A3D2F27A8133100BAE168 /* HomePresenter.swift in Sources */,
 				B61F7F7A27A44804002C014F /* HomeSportsViewController.swift in Sources */,
 				B61C3A0027A462C100B2C8AA /* SportsCollectionViewCell.swift in Sources */,
-<<<<<<< Updated upstream
 				B6C7730327AA0916005A6821 /* LeaguesAPI.swift in Sources */,
-=======
 				2B51A49827AA8CB500642B0F /* LatestEventCollectionViewCell.swift in Sources */,
->>>>>>> Stashed changes
 				B61F7F6727A419AD002C014F /* Deporte.xcdatamodeld in Sources */,
 				B6B09B9927A60B7A0024F5C7 /* LeaguesTableViewCell.swift in Sources */,
 				B6C772ED27A9D6FA005A6821 /* BaseAPI.swift in Sources */,
