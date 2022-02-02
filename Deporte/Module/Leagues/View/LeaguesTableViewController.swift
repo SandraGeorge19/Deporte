@@ -100,6 +100,10 @@ extension LeaguesTableViewController{
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("HEllo from cell Leages")
+        let leagueDetail = UIStoryboard(name: "LeagueDetails", bundle: nil)
+        let leagueDetailVC = leagueDetail.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
+        self.navigationController?.pushViewController(leagueDetailVC, animated: true)
+        
     }
     /*
     // Override to support conditional editing of the table view.

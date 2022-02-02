@@ -9,6 +9,10 @@
 import UIKit
 
 class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var leagueDetailTableView: UITableView!
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -72,6 +76,8 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate, UI
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        leagueDetailTableView.delegate = self
+        leagueDetailTableView.dataSource = self
     }
     
     
