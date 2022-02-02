@@ -121,6 +121,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="385" height="244"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                    <real key="value" value="18"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="awayTeamImageView" destination="VqB-f7-tvS" id="cGX-eQ-i0g"/>
                 <outlet property="awayTeamLabel" destination="FKe-O8-QUR" id="cyj-Ov-ITt"/>
