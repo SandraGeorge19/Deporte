@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Sport : Decodable{
+class Sport : Codable{
 //    var idSport : String?
 //    var strSport : String?
 //    var strFormat : String?
@@ -24,7 +24,7 @@ class Sport : Decodable{
     }
 }
 
-class MySport : Decodable{
+class MySport : Codable{
     var idSport : String?
     var strSport : String?
     var strFormat : String?
@@ -33,6 +33,6 @@ class MySport : Decodable{
     var strSportDescription : String?
 }
 
-class AllSports : Decodable{
+class AllSports : Codable{
     var sports : [MySport]
 }

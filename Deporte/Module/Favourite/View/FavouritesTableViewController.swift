@@ -32,14 +32,7 @@ class FavouritesTableViewController: UITableViewController {
 
            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
            // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        func fetchAllSportsData(){
-            let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/all_sports.php")
-            Alamofire.request(url!).response { (response) in
-                //let jsonResponse = response.data
-               debugPrint(response)
-                
-            }
-        }
+        
        }
     
     //MARK: -- IBActions

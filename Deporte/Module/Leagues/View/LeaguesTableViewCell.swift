@@ -17,12 +17,12 @@ class LeaguesTableViewCell: UITableViewCell {
     
     //MARK: -- Propertiest
     
-    var sportItem : MySport?{
+    var leagueCell : League?{
         didSet{
-            guard let sportItem = sportItem else{return}
+            guard let leagueCell = leagueCell else{return}
             leagueCellImg.kf.indicatorType = .activity
-            leagueCellImg.kf.setImage(with: URL(string: sportItem.strSportThumb ?? "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"))
-            leagueCellTitle.text = sportItem.strSport
+            leagueCellImg.kf.setImage(with: URL(string: leagueCell.strBadge ?? "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"))
+            leagueCellTitle.text = leagueCell.strLeague
         }
     }
     

@@ -7,25 +7,26 @@
 //
 
 import UIKit
+import Kingfisher
 import Alamofire
 
-class LeaguesTableViewController: UITableViewController {
+
+
+protocol LeaguesProtocol {
+    func updatingLeaguesTableView()
+}
+class LeaguesTableViewController: UITableViewController , LeaguesProtocol{
+    
     
     //MARK: -- IBOutlets
     
     
     //MARK: -- Propertiest
+    let myIndicator = UIActivityIndicatorView(style: .large)
+    var leaguesPresenter : LeaguesPresenter!
+    var sport : MySport?
     
-//    let sports : [Sport] = [
-//        Sport(image: "https://pngimage.net/wp-content/uploads/2018/05/courses-png-6.png", title: "Tennis"),
-//        Sport(image: "https://leisure.union.ufl.edu/Content/Images/leisure-courses.png", title: "Love Football"),
-//        Sport(image: "https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-06-512.png", title: "Basketball"),
-//        Sport(image: "https://pngimage.net/wp-content/uploads/2018/05/courses-png.png", title: "Bing Bong"),
-//        Sport(image: "https://www.pngitem.com/pimgs/m/49-491826_of-course-developing-your-employee-engagement-offering-business.png", title: "Volleyball"),
-//        Sport(image: "https://png.pngitem.com/pimgs/s/415-4157244_transparent-anime-christmas-png-christmas-tree-png-download.png", title: "Rugby")
-//    ]
-    
-    var leagues : [MySport]!
+    //var leagues : [MySport]!
     
     
     
@@ -37,8 +38,11 @@ class LeaguesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        tableView.reloadData()
+        //tableView.reloadData()
         navigationItem.title = "Leagues"
+        startIndicator()
+        
+        initializeLeaguesPresenterAndGetData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -50,6 +54,23 @@ class LeaguesTableViewController: UITableViewController {
     
     //MARK: -- Functions
 
+    func startIndicator(){
+        myIndicator.center = self.view.center
+        self.view.addSubview(myIndicator)
+        myIndicator.startAnimating()
+    }
+    
+    func initializeLeaguesPresenterAndGetData(){
+        leaguesPresenter = LeaguesPresenter(leaguesApi: LeaguesAPI())
+        leaguesPresenter.attachView(leagueView: self)
+        leaguesPresenter.getLeaguesToTableView()
+    }
+    
+    func updatingLeaguesTableView() {
+        self.tableView.reloadData()
+        myIndicator.stopAnimating()
+    }
+    
     
 }
 
@@ -63,7 +84,8 @@ extension LeaguesTableViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return leagues.count
+        print(leaguesPresenter.myLeagues.count)
+        return leaguesPresenter.myLeagues.count
     }
 
     
@@ -71,7 +93,7 @@ extension LeaguesTableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
 
         // Configure the cell...
-        cell.sportItem = leagues[indexPath.row]
+        cell.leagueCell = leaguesPresenter.myLeagues[indexPath.row]
         return cell
     }
     

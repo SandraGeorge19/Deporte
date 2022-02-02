@@ -52,7 +52,7 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
         myIndicator.startAnimating()
     }
     func initializeHomePresenterAndGetData(){
-        homePresenter = HomePresenter(networkService: NetworkServices())
+        homePresenter = HomePresenter(sportsApi: AllSportsAPI())
         homePresenter.attachView(homeView: self)
         homePresenter.getAllSports()
     }
@@ -95,8 +95,10 @@ extension HomeSportsViewController : UICollectionViewDelegate, UICollectionViewD
        }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let sport = homePresenter.mysports[indexPath.row]
         let leaguesViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as! LeaguesTableViewController
-        leaguesViewController.leagues = homePresenter.mysports
+        leaguesViewController.sport = sport
         
         self.navigationController?.pushViewController(leaguesViewController, animated: true)
     }
