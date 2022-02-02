@@ -45,6 +45,8 @@ class FavTableViewCell: UITableViewCell {
     //MARK: -- IBActions
     
     @IBAction func didPressYoutubeBtn(_ sender: Any) {
+        
+        UIApplication.shared.open(URL(string: ("https://www.youtube.com/channel/UC3Guly6AbOr3PqrZMaV6vog"))!, options: [:], completionHandler: nil)
     }
     
     //MARK: -- Functions
