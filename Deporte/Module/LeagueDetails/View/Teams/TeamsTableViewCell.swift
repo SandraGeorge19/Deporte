@@ -10,6 +10,7 @@ import UIKit
 
 class TeamsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var teamsCollectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

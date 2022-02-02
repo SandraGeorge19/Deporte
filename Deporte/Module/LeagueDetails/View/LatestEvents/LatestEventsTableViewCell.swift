@@ -10,6 +10,7 @@ import UIKit
 
 class LatestEventsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var latestEventsCollectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

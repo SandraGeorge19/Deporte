@@ -10,6 +10,7 @@ import UIKit
 
 class UpComingTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var upComingCollectionView: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
