@@ -193,6 +193,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		B6170BD227AB42B100417409 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		B61C39F927A45D2A00B2C8AA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +277,7 @@
 		B61F7F7427A44747002C014F /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				B6170BD227AB42B100417409 /* New Group */,
 				2B51A48127AA8B6A00642B0F /* LeagueDetails */,
 				B61F7F7827A4478C002C014F /* Leagues */,
 				B61F7F7727A44770002C014F /* Favourite */,

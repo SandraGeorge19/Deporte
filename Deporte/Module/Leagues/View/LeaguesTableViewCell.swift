@@ -45,6 +45,11 @@ class LeaguesTableViewCell: UITableViewCell {
     
     @IBAction func didPressYoutubeBtn(_ sender: UIButton) {
         print("Hello From Youtube")
+        print(leagueCell?.strYoutube ?? "")
+        DispatchQueue.main.async {
+            UIApplication.shared.open(URL(string: ("https://\(self.leagueCell?.strYoutube ?? "")"))!, options: [:], completionHandler: nil)
+        }
+        
     }
     
     //MARK: -- Functions
