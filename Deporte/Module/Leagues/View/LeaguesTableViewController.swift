@@ -100,8 +100,8 @@ extension LeaguesTableViewController{
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("HEllo from cell Leages")
-        let leagueDetail = UIStoryboard(name: "LeagueDetails", bundle: nil)
-        let leagueDetailVC = leagueDetail.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
+
+        let leagueDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LatestEvent2ViewController
         self.navigationController?.pushViewController(leagueDetailVC, animated: true)
         
     }

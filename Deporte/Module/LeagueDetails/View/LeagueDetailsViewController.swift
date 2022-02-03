@@ -18,7 +18,7 @@ class LeagueDetailsViewController: UITableViewController,UICollectionViewDelegat
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,21 +27,26 @@ class LeagueDetailsViewController: UITableViewController,UICollectionViewDelegat
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UpComingTableViewCell") as? UpComingTableViewCell else { return UITableViewCell() }
             cell.upComingCollectionView.delegate=self
             cell.upComingCollectionView.dataSource=self
-            cell.upComingCollectionView.collectionViewLayout.invalidateLayout()
+            cell.upComingCollectionView.tag=indexPath.row
+
+            cell.upComingCollectionView.reloadData()
 
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "LatestEventsTableViewCell") as? LatestEventsTableViewCell else { return UITableViewCell() }
             cell.latestEventsCollectionView.delegate=self
             cell.latestEventsCollectionView.dataSource=self
-            cell.latestEventsCollectionView.collectionViewLayout.invalidateLayout()
+            cell.latestEventsCollectionView.tag=indexPath.row
 
+            cell.latestEventsCollectionView.reloadData()
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TeamsTableViewCell") as? TeamsTableViewCell else { return UITableViewCell() }
             cell.teamsCollectionView.delegate=self
             cell.teamsCollectionView.dataSource=self
-            cell.teamsCollectionView.collectionViewLayout.invalidateLayout()
+            cell.teamsCollectionView.tag=indexPath.row
+            cell.teamsCollectionView.reloadData()
+
             return cell
         default:
              return UITableViewCell()
@@ -85,6 +90,8 @@ class LeagueDetailsViewController: UITableViewController,UICollectionViewDelegat
         // Do any additional setup after loading the view.
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.rowHeight = UITableView.automaticDimension;
+        self.tableView.estimatedRowHeight = 300;
         let myCell1 = UINib(nibName: "UpComingTableViewCell", bundle: nil)
         self.tableView.register(myCell1, forCellReuseIdentifier: "UpComingTableViewCell")
         let myCell2 = UINib(nibName: "LatestEventsTableViewCell", bundle: nil)
@@ -116,10 +123,10 @@ class LeagueDetailsViewController: UITableViewController,UICollectionViewDelegat
      // Pass the selected object to the new view controller.
      }
      */
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 20
-
-       }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//            return 20
+//
+//       }
 
 
 
@@ -129,19 +136,26 @@ class LeagueDetailsViewController: UITableViewController,UICollectionViewDelegat
       layout collectionViewLayout: UICollectionViewLayout,
       sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-      // 2
-      let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-      let availableWidth = view.frame.width - paddingSpace
-      let widthPerItem = availableWidth / itemsPerRow
-      
-      return CGSize(width: widthPerItem, height: widthPerItem)
+        switch indexPath.item {
+        case 0:
+            return CGSize(width: 384, height: 244)
+        case 1:
+            return CGSize(width: 382, height: 98)
+        case 2:
+            return CGSize(width: 150, height: 190)
+        default:
+            return CGSize(width: 384, height: 244)
+            
+        }
     }
 
 
        
 
-
-
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+       
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
               return UIEdgeInsets(top: 15, left: 5, bottom: 1, right: 5)
 
