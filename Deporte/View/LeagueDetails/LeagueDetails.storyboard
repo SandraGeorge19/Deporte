@@ -1,45 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--League Details View Controller-->
-        <scene sceneID="4Am-HR-Uzg">
+        <scene sceneID="kY2-tU-8fy">
             <objects>
-                <viewController storyboardIdentifier="LeagueDetailsViewController" id="ff8-Tw-sav" customClass="LeagueDetailsViewController" customModule="Deporte" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dct-Jp-3fA">
+                <tableViewController storyboardIdentifier="LeagueDetailsViewController" id="gPQ-Zq-v6F" customClass="LeagueDetailsViewController" customModule="Deporte" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fYA-nX-w6K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aWA-6e-mwa">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="ff8-Tw-sav" id="fac-kF-gFg"/>
-                                    <outlet property="delegate" destination="ff8-Tw-sav" id="T5Q-Wl-LSP"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="VeB-jx-VPN" firstAttribute="bottom" secondItem="aWA-6e-mwa" secondAttribute="bottom" id="PFL-xA-B6G"/>
-                            <constraint firstItem="aWA-6e-mwa" firstAttribute="top" secondItem="VeB-jx-VPN" secondAttribute="top" id="hTA-lL-E7P"/>
-                            <constraint firstItem="aWA-6e-mwa" firstAttribute="leading" secondItem="VeB-jx-VPN" secondAttribute="leading" id="wtQ-jH-zfu"/>
-                            <constraint firstItem="VeB-jx-VPN" firstAttribute="trailing" secondItem="aWA-6e-mwa" secondAttribute="trailing" id="xG0-Kg-VRF"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="VeB-jx-VPN"/>
-                    </view>
-                    <connections>
-                        <outlet property="leagueDetailTableView" destination="aWA-6e-mwa" id="Q5M-NP-C0q"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qc-7Q-CeD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="E6t-JN-Stc">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E6t-JN-Stc" id="qvM-kw-Zak">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gPQ-Zq-v6F" id="fCm-oR-Exz"/>
+                            <outlet property="delegate" destination="gPQ-Zq-v6F" id="8k8-sj-m8l"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mao-4t-IJQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="77" y="132"/>
+            <point key="canvasLocation" x="41" y="188"/>
         </scene>
     </scenes>
 </document>

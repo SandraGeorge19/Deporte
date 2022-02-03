@@ -14,6 +14,8 @@ class UpComingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let myCell1 = UINib(nibName: "UpComingEventCollectionViewCell", bundle: nil)
+        self.upComingCollectionView.register(myCell1, forCellWithReuseIdentifier: "UpComingEventCollectionViewCell")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

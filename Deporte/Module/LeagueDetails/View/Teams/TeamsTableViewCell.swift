@@ -14,6 +14,8 @@ class TeamsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let myCell1 = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
+        self.teamsCollectionView.register(myCell1, forCellWithReuseIdentifier: "TeamCollectionViewCell")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
