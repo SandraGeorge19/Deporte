@@ -12,6 +12,7 @@ import Alamofire
 
 protocol HomeProtocol : AnyObject{
     func updatingCollectionView()
+    func alertWillPresent()
 }
 
 class HomeSportsViewController: UIViewController ,HomeProtocol{
@@ -32,8 +33,7 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
         
         startIndicator()
         
-        initializeHomePresenterAndGetData()
-        
+        checkConnectivity()
     }
     
     //MARK: -- IBActions
@@ -60,6 +60,25 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
     func updatingCollectionView() {
         self.myCollectionView.reloadData()
         myIndicator.stopAnimating()
+    }
+    
+    func alertWillPresent(){
+        let alert = UIAlertController(title: "Network Error!!", message: "The device isn't connected to network, please re-check the internet connectivity", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+            UIControl().sendAction(#selector(NSXPCConnection.suspend),
+            to: UIApplication.shared, for: nil)
+
+
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func checkConnectivity(){
+        if NetworkMonitor.shared.isConnected{
+            initializeHomePresenterAndGetData()
+        }else{
+            alertWillPresent()
+        }
     }
 
     /*

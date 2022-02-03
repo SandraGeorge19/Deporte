@@ -46,8 +46,9 @@ class LeaguesTableViewCell: UITableViewCell {
     @IBAction func didPressYoutubeBtn(_ sender: UIButton) {
         print("Hello From Youtube")
         print(leagueCell?.strYoutube ?? "")
+        
         DispatchQueue.main.async {
-            UIApplication.shared.open(URL(string: ("https://\(self.leagueCell?.strYoutube ?? "")"))!, options: [:], completionHandler: nil)
+            self.openApp()
         }
         
     }
@@ -72,6 +73,20 @@ class LeaguesTableViewCell: UITableViewCell {
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
         self.clipsToBounds = false
         self.contentView.layer.masksToBounds = true
+    }
+    
+    func openApp() {
+
+        let appName = "youtube"
+        let appScheme = "\(appName)://app"
+        let appUrl = URL(string: appScheme)
+
+        if UIApplication.shared.canOpenURL(appUrl! as URL) {
+            UIApplication.shared.open(appUrl!)
+        } else {
+            UIApplication.shared.open(URL(string: ("https://\(self.leagueCell?.strYoutube ?? "")"))!, options: [:], completionHandler: nil)
+        }
+
     }
 
 }

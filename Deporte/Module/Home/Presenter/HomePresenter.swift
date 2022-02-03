@@ -37,7 +37,8 @@ class HomePresenter{
                     self.mysports = response?.sports ?? []
                     self.homeView.updatingCollectionView()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    //print(error.localizedDescription)
+                    self.homeView.alertWillPresent()
                 }
             }
         }

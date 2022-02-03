@@ -49,6 +49,7 @@
 		B6C772FF27AA03A1005A6821 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C772FE27AA03A1005A6821 /* League.swift */; };
 		B6C7730127AA0618005A6821 /* LeaguesNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C7730027AA0618005A6821 /* LeaguesNetworking.swift */; };
 		B6C7730327AA0916005A6821 /* LeaguesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C7730227AA0916005A6821 /* LeaguesAPI.swift */; };
+		B6D0783F27AB6BAD00D87580 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D0783E27AB6BAD00D87580 /* NetworkMonitor.swift */; };
 		B6D2C5A027A49A890047D06A /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2C59F27A49A890047D06A /* Sport.swift */; };
 		B6D2C5A227A4A64B0047D06A /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2C5A127A4A64B0047D06A /* FavTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		B6C772FE27AA03A1005A6821 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 		B6C7730027AA0618005A6821 /* LeaguesNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesNetworking.swift; sourceTree = "<group>"; };
 		B6C7730227AA0916005A6821 /* LeaguesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesAPI.swift; sourceTree = "<group>"; };
+		B6D0783E27AB6BAD00D87580 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		B6D2C59F27A49A890047D06A /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		B6D2C5A127A4A64B0047D06A /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		C3C59F565D10D5BBDE52C0B5 /* Pods-Deporte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Deporte.debug.xcconfig"; path = "Target Support Files/Pods-Deporte/Pods-Deporte.debug.xcconfig"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				B6C772EC27A9D6FA005A6821 /* BaseAPI.swift */,
 				B6C772EE27A9D724005A6821 /* TargetType.swift */,
+				B6D0783E27AB6BAD00D87580 /* NetworkMonitor.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				B6B09B9927A60B7A0024F5C7 /* LeaguesTableViewCell.swift in Sources */,
 				B6C772ED27A9D6FA005A6821 /* BaseAPI.swift in Sources */,
 				B61F7F7C27A448C7002C014F /* FavouritesTableViewController.swift in Sources */,
+				B6D0783F27AB6BAD00D87580 /* NetworkMonitor.swift in Sources */,
 				B60A3D3927A8ABAA00BAE168 /* UIView.swift in Sources */,
 				B6C772FA27AA018F005A6821 /* Marks.swift in Sources */,
 				B61C39FE27A4608600B2C8AA /* TabBarVC.swift in Sources */,
