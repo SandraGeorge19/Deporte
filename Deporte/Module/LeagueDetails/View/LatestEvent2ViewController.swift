@@ -9,6 +9,7 @@
 import UIKit
 
 class LatestEvent2ViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -52,7 +53,7 @@ class LatestEvent2ViewController: UIViewController ,UICollectionViewDelegate, UI
         latestEventCollectionView.register(myCell2, forCellWithReuseIdentifier: "LatestEventCollectionViewCell")
         let myCell3 = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
         teamsCollectionView.register(myCell3, forCellWithReuseIdentifier: "TeamCollectionViewCell")
-        
+        latesteEventCollectionHeight.constant = (98 + 16) * 3
         // Do any additional setup after loading the view.
     }
     
