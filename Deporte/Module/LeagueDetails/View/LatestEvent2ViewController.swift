@@ -10,6 +10,8 @@ import UIKit
 
 class LatestEvent2ViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
