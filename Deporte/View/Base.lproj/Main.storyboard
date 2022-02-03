@@ -177,11 +177,21 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no internet available, please check connectivity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U4-wN-3Hh">
+                                <rect key="frame" x="16" y="764" width="382" height="82"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jPW-Nd-fJB" firstAttribute="top" secondItem="cUY-Wn-sKc" secondAttribute="top" id="3bN-4G-RHl"/>
                             <constraint firstItem="jPW-Nd-fJB" firstAttribute="leading" secondItem="cUY-Wn-sKc" secondAttribute="leading" id="7JL-Ny-lT2"/>
+                            <constraint firstItem="8U4-wN-3Hh" firstAttribute="leading" secondItem="cUY-Wn-sKc" secondAttribute="leading" constant="16" id="SPA-Da-6zp"/>
+                            <constraint firstItem="cUY-Wn-sKc" firstAttribute="bottom" secondItem="8U4-wN-3Hh" secondAttribute="bottom" constant="16" id="bzf-uT-f3f"/>
+                            <constraint firstItem="cUY-Wn-sKc" firstAttribute="trailing" secondItem="8U4-wN-3Hh" secondAttribute="trailing" constant="16" id="hm9-9g-eII"/>
+                            <constraint firstItem="8U4-wN-3Hh" firstAttribute="top" secondItem="jPW-Nd-fJB" secondAttribute="bottom" constant="16" id="lpa-d8-YvE"/>
                             <constraint firstAttribute="bottom" secondItem="jPW-Nd-fJB" secondAttribute="bottom" constant="148" id="lqV-7R-FVa"/>
                             <constraint firstItem="jPW-Nd-fJB" firstAttribute="trailing" secondItem="cUY-Wn-sKc" secondAttribute="trailing" id="oJV-6s-aCI"/>
                         </constraints>
@@ -189,6 +199,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sports" id="VdL-Xw-jtl"/>
                     <connections>
+                        <outlet property="internetMsgLbl" destination="8U4-wN-3Hh" id="xO9-rU-Zti"/>
                         <outlet property="myCollectionView" destination="jPW-Nd-fJB" id="Y9R-yV-G1v"/>
                     </connections>
                 </viewController>

@@ -20,11 +20,16 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
     //MARK: -- IBOutlets
     
     @IBOutlet weak var myCollectionView: UICollectionView!
+    @IBOutlet weak var internetMsgLbl: UILabel!
+    
     
     //MARK: -- Propertiest
     
     let myIndicator = UIActivityIndicatorView(style: .large)
     var homePresenter : HomePresenter!
+    
+    //for refreshing the data that comes from api
+    let refreshControl = UIRefreshControl()
     
     //MARK: -- LifeCycle
     override func viewDidLoad() {
@@ -34,92 +39,11 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
         startIndicator()
         
         checkConnectivity()
+        
+        refreshingHomeScreen()
     }
     
     //MARK: -- IBActions
     
-    //MARK: -- Functions
     
-    func configureCollectionView(){
-        myCollectionView.delegate = self
-        myCollectionView.dataSource = self
-        
-    }
-    
-    func startIndicator(){
-        myIndicator.center = self.view.center
-        self.view.addSubview(myIndicator)
-        myIndicator.startAnimating()
-    }
-    func initializeHomePresenterAndGetData(){
-        homePresenter = HomePresenter(sportsApi: AllSportsAPI())
-        homePresenter.attachView(homeView: self)
-        homePresenter.getAllSports()
-    }
-    
-    func updatingCollectionView() {
-        self.myCollectionView.reloadData()
-        myIndicator.stopAnimating()
-    }
-    
-    func alertWillPresent(){
-        let alert = UIAlertController(title: "Network Error!!", message: "The device isn't connected to network, please re-check the internet connectivity", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-            UIControl().sendAction(#selector(NSXPCConnection.suspend),
-            to: UIApplication.shared, for: nil)
-
-
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func checkConnectivity(){
-        if NetworkMonitor.shared.isConnected{
-            initializeHomePresenterAndGetData()
-        }else{
-            alertWillPresent()
-        }
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-}
-
-//MARK: -- Extensions - UICollectionView
-
-extension HomeSportsViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(homePresenter.mysports.count)
-          return homePresenter.mysports.count
-       }
-       
-       
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           //print("Helloooo from the cell")
-           let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SportsCollectionViewCell
-        cell.sportItem = homePresenter.mysports[indexPath.row]
-           return cell
-           
-       }
-       
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.view.bounds.width - 48) / 2, height: (self.view.bounds.width + 20) / 2)
-       }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let sport = homePresenter.mysports[indexPath.row]
-        let leaguesViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as! LeaguesTableViewController
-        leaguesViewController.sport = sport
-        
-        self.navigationController?.pushViewController(leaguesViewController, animated: true)
-    }
-
 }
