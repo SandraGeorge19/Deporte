@@ -35,8 +35,8 @@ extension HomeSportsViewController : UICollectionViewDelegate, UICollectionViewD
         
         let sport = homePresenter.mysports[indexPath.row]
         let leaguesViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as! LeaguesTableViewController
-        leaguesViewController.sport = sport
-        
+        let leagePresenter = LeaguesPresenter(leaguesApi: LeaguesAPI() , sportName: sport.strSport ?? "")
+        leaguesViewController.leaguesPresenter = leagePresenter
         self.navigationController?.pushViewController(leaguesViewController, animated: true)
     }
 

@@ -202,6 +202,8 @@
 		2BEA57C327ABED890062ECBE /* TeamDetails */ = {
 			isa = PBXGroup;
 			children = (
+				B69859B327ADC09700E65C90 /* Extensions */,
+				B69859B227ADC08400E65C90 /* Presenter */,
 				2BEA57C427ABED9E0062ECBE /* View */,
 			);
 			path = TeamDetails;
@@ -396,6 +398,20 @@
 			isa = PBXGroup;
 			children = (
 				B628A7DB27AC8B1600700DFA /* LeaguesVCExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B69859B227ADC08400E65C90 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		B69859B327ADC09700E65C90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Extensions;
 			sourceTree = "<group>";

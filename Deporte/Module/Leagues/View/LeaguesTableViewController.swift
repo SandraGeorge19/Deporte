@@ -61,7 +61,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol{
     }
     
     func initializeLeaguesPresenterAndGetData(){
-        leaguesPresenter = LeaguesPresenter(leaguesApi: LeaguesAPI())
+//        leaguesPresenter = LeaguesPresenter(leaguesApi: LeaguesAPI() , sportName: )
         leaguesPresenter.attachView(leagueView: self)
         leaguesPresenter.getLeaguesToTableView()
     }

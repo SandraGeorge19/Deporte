@@ -11,13 +11,20 @@ import Foundation
 
 class LeaguesPresenter{
  
+    //edits sandra
+    var sportName : String!
+    
+    
+    
+    
     
     var leaguesApi : LeaguesAPIProtocol!
     var myLeagues : [League] = []
     weak var leagueView : LeaguesTableViewController?
     
-    init(leaguesApi : LeaguesAPIProtocol) {
+    init(leaguesApi : LeaguesAPIProtocol ,sportName : String ) {
         self.leaguesApi = leaguesApi
+        self.sportName = sportName
     }
     
     func attachView(leagueView : LeaguesTableViewController){
@@ -25,7 +32,7 @@ class LeaguesPresenter{
     }
     
     func getLeaguesToTableView(){
-        leaguesApi.getLeaguesFromApi (sportName: (leagueView?.sport?.strSport)!) { (result) in
+        leaguesApi.getLeaguesFromApi (sportName: sportName) { (result) in
             DispatchQueue.main.async {
                 switch result{
                     
