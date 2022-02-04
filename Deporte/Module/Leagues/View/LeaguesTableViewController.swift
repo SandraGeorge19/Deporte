@@ -24,7 +24,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol{
     //MARK: -- Propertiest
     let myIndicator = UIActivityIndicatorView(style: .large)
     var leaguesPresenter : LeaguesPresenter!
-    var sport : MySport?
+    //var sport : MySport?
     
     //var leagues : [MySport]!
     

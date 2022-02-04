@@ -37,7 +37,11 @@ extension LeaguesTableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("HEllo from cell Leages")
 
+        let leage = leaguesPresenter.myLeagues[indexPath.row]
+        
         let leagueDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LatestEvent2ViewController
+        let leageDetailsPresenter = TeamsPresenter(teamsApi: TeamsAPI(), leagueName: leage.strLeague ?? "")
+        leagueDetailVC.teamsPresenter = leageDetailsPresenter
         self.navigationController?.pushViewController(leagueDetailVC, animated: true)
         
     }

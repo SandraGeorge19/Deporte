@@ -600,18 +600,30 @@
                                                                             <constraint firstAttribute="width" constant="40" id="IS9-zS-oxe"/>
                                                                         </constraints>
                                                                         <state key="normal" backgroundImage="facebook"/>
+                                                                        <connections>
+                                                                            <action selector="FBBtnPressed:" destination="XyR-to-zJn" eventType="touchUpInside" id="mLI-UZ-MUp"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqV-Hr-BaE">
                                                                         <rect key="frame" x="41" y="0.0" width="40" height="40"/>
                                                                         <state key="normal" backgroundImage="twitter"/>
+                                                                        <connections>
+                                                                            <action selector="twitterPressed:" destination="XyR-to-zJn" eventType="touchUpInside" id="t4J-8P-T4c"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1Z-ZB-Kit">
                                                                         <rect key="frame" x="82" y="0.0" width="40" height="40"/>
                                                                         <state key="normal" backgroundImage="instagram"/>
+                                                                        <connections>
+                                                                            <action selector="instaPressed:" destination="XyR-to-zJn" eventType="touchUpInside" id="CbW-y1-3fV"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIR-Qx-ZV8">
                                                                         <rect key="frame" x="123" y="0.0" width="40" height="40"/>
                                                                         <state key="normal" backgroundImage="world-wide-web"/>
+                                                                        <connections>
+                                                                            <action selector="websitePressed:" destination="XyR-to-zJn" eventType="touchUpInside" id="FWr-JW-dIJ"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -817,6 +829,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CWE-LH-F7Y"/>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImg" destination="uyL-l8-Sy1" id="ngB-vZ-TsC"/>
+                        <outlet property="countryName" destination="BuN-Fj-VCJ" id="H87-S0-Mpy"/>
+                        <outlet property="countryView" destination="GJL-TO-1FN" id="h1p-sG-pEa"/>
+                        <outlet property="descriptionName" destination="j09-t3-aqM" id="fhB-ca-Ucl"/>
+                        <outlet property="descriptionView" destination="oZ3-o2-8DC" id="cKz-B3-cBX"/>
+                        <outlet property="leagueName" destination="OSl-OF-mHp" id="a1K-Tp-NsF"/>
+                        <outlet property="leagueView" destination="AoJ-Xn-dS7" id="aMs-ND-BJF"/>
+                        <outlet property="profileImg" destination="nSk-Au-KKU" id="jZm-TL-XSI"/>
+                        <outlet property="stadiumName" destination="vSp-U8-z76" id="Gln-Zx-j6S"/>
+                        <outlet property="stadiumView" destination="BN8-X9-BF6" id="x0j-59-7KD"/>
+                        <outlet property="teamName" destination="udP-3O-nT7" id="Ecw-3L-a2R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Yq-Fm-tP0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
