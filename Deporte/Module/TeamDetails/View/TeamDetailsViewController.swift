@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 protocol TeamProtocol {
     func updatingTeamViewController()
@@ -51,21 +52,42 @@ class TeamDetailsViewController: UIViewController {
     
     //MARK: -- IBActions
     @IBAction func FBBtnPressed(_ sender: UIButton) {
-        openSelectedApp(appName: "facebook", linkURL: teamPresenter.myTeam?.strFacebook ?? "")
+        let fbURL = teamPresenter.myTeam?.strFacebook
+        if fbURL != nil && fbURL != ""{
+            openSelectedApp(appName: "facebook", linkURL: fbURL!)
+        }
+        else{
+            self.view.makeToast("There is No Facebook Page, Yet!")
+        }
+        
     }
     
     @IBAction func twitterPressed(_ sender: UIButton) {
-        openSelectedApp(appName: "twitter", linkURL: teamPresenter.myTeam?.strTwitter ?? "")
+        let twitterURL = teamPresenter.myTeam?.strTwitter
+        if twitterURL != nil && twitterURL != ""{
+            openSelectedApp(appName: "twitter", linkURL: twitterURL!)
+        }
+        else{
+            self.view.makeToast("There is No Twitter Account, Yet!")
+        }
     }
     
     @IBAction func instaPressed(_ sender: UIButton) {
-        openSelectedApp(appName: "instagram", linkURL: teamPresenter.myTeam?.strInstagram ?? "")
+        let instaURL = teamPresenter.myTeam?.strInstagram
+        if instaURL != nil && instaURL != ""{
+            openSelectedApp(appName: "instagram", linkURL: instaURL!)
+        }
+        else{
+            self.view.makeToast("There is No Instagram Page, Yet!")
+        }
     }
     @IBAction func websitePressed(_ sender: UIButton) {
-        openSelectedApp(appName: "", linkURL: teamPresenter.myTeam?.strWebsite ?? "")
+        let websiteURL = teamPresenter.myTeam?.strWebsite
+        if websiteURL != nil && websiteURL != ""{
+            openSelectedApp(appName: "", linkURL: websiteURL!)
+        }
+        else{
+            self.view.makeToast("There is No Website, Yet!")
+        }
     }
-    
-    
-    
-
 }

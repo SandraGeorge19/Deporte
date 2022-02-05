@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class LeaguesTableViewCell: UITableViewCell {
     
@@ -46,9 +47,13 @@ class LeaguesTableViewCell: UITableViewCell {
     @IBAction func didPressYoutubeBtn(_ sender: UIButton) {
         print("Hello From Youtube")
         print(leagueCell?.strYoutube ?? "")
-        
+        let youtubeURL = leagueCell?.strYoutube
         DispatchQueue.main.async {
-            self.openApp()
+            if youtubeURL != nil && youtubeURL != ""{
+                self.openApp()
+            }else{
+                self.makeToast("There is no Youtube Channel,Yet!")
+            }
         }
         
     }
