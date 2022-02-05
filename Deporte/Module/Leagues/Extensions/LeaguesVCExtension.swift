@@ -39,7 +39,7 @@ extension LeaguesTableViewController{
 
         let leage = leaguesPresenter.myLeagues[indexPath.row]
         
-        let leagueDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LatestEvent2ViewController
+        let leagueDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
         let leageDetailsPresenter = TeamsPresenter(teamsApi: TeamsAPI(), leagueName: leage.strLeague ?? "")
         leagueDetailVC.teamsPresenter = leageDetailsPresenter
         self.navigationController?.pushViewController(leagueDetailVC, animated: true)

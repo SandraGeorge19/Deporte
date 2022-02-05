@@ -1,163 +1,157 @@
 //
-//  LeagueDetailsViewController.swift
+//  LatestEvent2ViewController.swift
 //  Deporte
 //
-//  Created by Abdo on 2/2/22.
+//  Created by Abdo on 2/3/22.
 //  Copyright © 2022 sandra. All rights reserved.
 //
 
 import UIKit
-private let itemsPerRow: CGFloat = 1
-private let sectionInsets = UIEdgeInsets(
-    top: 200,
-left: 20.0,
-bottom: 20.0,
-right: 20.0)
-class LeagueDetailsViewController: UITableViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UpComingTableViewCell") as? UpComingTableViewCell else { return UITableViewCell() }
-            cell.upComingCollectionView.delegate=self
-            cell.upComingCollectionView.dataSource=self
-            cell.upComingCollectionView.tag=indexPath.row
+import Kingfisher
+import Alamofire
 
-            cell.upComingCollectionView.reloadData()
 
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LatestEventsTableViewCell") as? LatestEventsTableViewCell else { return UITableViewCell() }
-            cell.latestEventsCollectionView.delegate=self
-            cell.latestEventsCollectionView.dataSource=self
-            cell.latestEventsCollectionView.tag=indexPath.row
+protocol LeaguesDetailsProtocol {
+    func updatingTeamsCollectionView()
+}
 
-            cell.latestEventsCollectionView.reloadData()
-            return cell
-        case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TeamsTableViewCell") as? TeamsTableViewCell else { return UITableViewCell() }
-            cell.teamsCollectionView.delegate=self
-            cell.teamsCollectionView.dataSource=self
-            cell.teamsCollectionView.tag=indexPath.row
-            cell.teamsCollectionView.reloadData()
+class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout , LeaguesDetailsProtocol{
+    
+    let myIndicator = UIActivityIndicatorView(style: .large)
+    var teamsPresenter : TeamsPresenter!
+    @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
+    
 
-            return cell
-        default:
-             return UITableViewCell()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventCollectionViewCell", for: indexPath) as? UpComingEventCollectionViewCell else { return UICollectionViewCell() }
-            
-            return cell
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-            
-            return cell
-        case 2:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
-            
-            return cell
-        default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-            
-            return cell
-        }
-    }
-    
-    
+    @IBOutlet weak var teamsCollectionView: UICollectionView!
+    @IBOutlet weak var latestEventCollectionView: UICollectionView!
+    @IBOutlet weak var upComingEventsTableView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        teamsCollectionView.dataSource=self
+        teamsCollectionView.delegate=self
+        latestEventCollectionView.dataSource=self
+        latestEventCollectionView.delegate=self
+        upComingEventsTableView.delegate=self
+        upComingEventsTableView.dataSource=self
+        let myCell1 = UINib(nibName: "UpComingEventCollectionViewCell", bundle: nil)
+        upComingEventsTableView.register(myCell1, forCellWithReuseIdentifier: "UpComingEventCollectionViewCell")
+        let myCell2 = UINib(nibName: "LatestEventCollectionViewCell", bundle: nil)
+        latestEventCollectionView.register(myCell2, forCellWithReuseIdentifier: "LatestEventCollectionViewCell")
+        let myCell3 = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
+        teamsCollectionView.register(myCell3, forCellWithReuseIdentifier: "TeamCollectionViewCell")
+        latesteEventCollectionHeight.constant = (98 + 16) * 3
         // Do any additional setup after loading the view.
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.rowHeight = UITableView.automaticDimension;
-        self.tableView.estimatedRowHeight = 300;
-        let myCell1 = UINib(nibName: "UpComingTableViewCell", bundle: nil)
-        self.tableView.register(myCell1, forCellReuseIdentifier: "UpComingTableViewCell")
-        let myCell2 = UINib(nibName: "LatestEventsTableViewCell", bundle: nil)
-        self.tableView.register(myCell2, forCellReuseIdentifier: "LatestEventCollectionViewCell")
-        let myCell3 = UINib(nibName: "TeamsTableViewCell", bundle: nil)
-        self.tableView.register(myCell3, forCellReuseIdentifier: "TeamsTableViewCell")
+        
+        
+        
+        startIndicator()
+        
+        initializingTeamsPresenterAndGetData()
+        
+        
     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        switch indexPath.item {
-//        case 0:
-//            return CGSize(width: 100, height: 100)
-//        case 1:
-//            return CGSize(width: 100, height: 100)
-//        case 2:
-//            return CGSize(width: 180, height: 180)
-//
-//        default:
-//            return CGSize(width: 100, height: 100)
-//
-//        }
-//    }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//            return 20
-//
-//       }
-
-
-
-       
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case upComingEventsTableView:
+            return 3
+        
+        case latestEventCollectionView:
+            return 3
+            
+        case teamsCollectionView:
+            print(teamsPresenter.myTeams.count)
+            return teamsPresenter.myTeams.count
+        default:
+            return 3
+        }
+        
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case upComingEventsTableView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventCollectionViewCell", for: indexPath) as? UpComingEventCollectionViewCell else { return UICollectionViewCell() }
+            
+            return cell
+        case latestEventCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
+            
+            return cell
+        case teamsCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
+            cell.teamsCell = teamsPresenter.myTeams[indexPath.row]
+            print(teamsPresenter.myTeams[indexPath.row].strTeam ?? "NoTHING")
+            
+            return cell
+        default:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
+            
+            return cell
+        }
+    }
+    
+    
     func collectionView(
       _ collectionView: UICollectionView,
       layout collectionViewLayout: UICollectionViewLayout,
       sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        switch indexPath.item {
-        case 0:
+        switch collectionView {
+        case upComingEventsTableView:
             return CGSize(width: 384, height: 244)
-        case 1:
+        case latestEventCollectionView:
             return CGSize(width: 382, height: 98)
-        case 2:
+        case teamsCollectionView:
             return CGSize(width: 150, height: 190)
         default:
-            return CGSize(width: 384, height: 244)
+            return CGSize(width: 150, height: 190)
             
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           return UIEdgeInsets(top: 15, left: 5, bottom: 1, right: 5)
 
-
-       
-
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+       }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch collectionView {
+        case upComingEventsTableView:
+            break
+        case latestEventCollectionView:
+            break
+        case teamsCollectionView:
+                let team = teamsPresenter.myTeams[indexPath.row]
+                
+                
+                let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
+               let teamPresent = TeamPresenter(myTeam: team)
+                teamDetailsVC.teamPresenter = teamPresent
+                self.present(teamDetailsVC,animated: true,completion: nil)
+        default:
+            break
+        }
     }
-       
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-              return UIEdgeInsets(top: 15, left: 5, bottom: 1, right: 5)
+    
+    func startIndicator(){
+        myIndicator.center = self.view.center
+        self.view.addSubview(myIndicator)
+        myIndicator.startAnimating()
+    }
+    
+    func initializingTeamsPresenterAndGetData(){
+        teamsPresenter.attachView(teamsView: self)
+        teamsPresenter.getTeamsToTeamsCollectionView()
+    }
+    
+    func updatingTeamsCollectionView() {
+        self.teamsCollectionView.reloadData()
+        myIndicator.stopAnimating()
+    }
 
-          }
 }

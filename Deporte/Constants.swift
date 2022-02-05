@@ -14,4 +14,6 @@ struct Constants {
     static let GET_ALL_SPORTS = "all_sports.php?"
     static let GET_ALL_LEAGUES = "search_all_leagues.php?"
     static let GET_TEAM_DETAILS = "search_all_teams.php?"
+    static let GET_UPCOMING_EVENTS="searchevents.php?"
+    static let GET_LATEST_EVENT = "eventsseason.php?"
 }

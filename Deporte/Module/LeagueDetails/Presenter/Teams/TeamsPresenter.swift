@@ -13,14 +13,14 @@ class TeamsPresenter{
     
     var teamsApi : TeamsAPIProtocol!
     var myTeams : [Team] = []
-    weak var teamsSubView : LatestEvent2ViewController?
+    weak var teamsSubView : LeagueDetailsViewController?
     
     init(teamsApi : TeamsAPIProtocol , leagueName : String){
         self.teamsApi = teamsApi
         self.leagueName = leagueName
     }
     
-    func attachView(teamsView : LatestEvent2ViewController){
+    func attachView(teamsView : LeagueDetailsViewController){
         self.teamsSubView = teamsView
     }
     func getTeamsToTeamsCollectionView(){
