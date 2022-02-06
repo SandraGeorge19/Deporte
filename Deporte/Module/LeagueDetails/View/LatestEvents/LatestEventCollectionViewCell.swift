@@ -10,6 +10,11 @@ import UIKit
 
 class LatestEventCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var awayTeamNameLabel: UILabel!
+    @IBOutlet weak var homeTeamNameLabel: UILabel!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var homeTeamImageView: UIImageView!
+    @IBOutlet weak var awayTeamImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
