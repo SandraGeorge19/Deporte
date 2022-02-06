@@ -26,6 +26,20 @@ class LeageDetailsPresenter{
     func requestData(leagueID:String, leagueName: String){
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
+        upComingEventsApi.getAllUpComingEvents(){(result) in
+            switch result{
+                case .success(let response):
+                    self.leagueDetailsViewController.upComingEvents = (response?.event ?? [])
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    
+                    break
+                
+            }
+            dispatchGroup.leave()
+        
+        }
     }
     
 
