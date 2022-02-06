@@ -23,14 +23,14 @@ extension LatestEventsNetworking : TargetType{
     
     var path: String {
         switch self {
-        case .getLatestEvent( _):
+        case .getLatestEvent:
             return Constants.GET_LATEST_EVENT
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getLatestEvent( _):
+        case .getLatestEvent:
             return .get
         }
     }
@@ -48,6 +48,5 @@ extension LatestEventsNetworking : TargetType{
             return [:]
         }
     }
-    
     
 }

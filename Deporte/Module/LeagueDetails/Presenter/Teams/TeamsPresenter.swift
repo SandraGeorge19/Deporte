@@ -29,7 +29,7 @@ class TeamsPresenter{
                 switch result{
                 case .success(let response):
                     self.myTeams = response?.teams ?? []
-                    self.teamsSubView?.updatingTeamsCollectionView()
+//                    self.teamsSubView?.updatingTeamsCollectionView()
                     
                 case .failure(let error):
                     print(error.localizedDescription)

@@ -9,13 +9,13 @@
 import Foundation
 
 protocol LatestEventsAPI {
-    func getLatestEvents(leagueID:String,completion: @escaping (Swift.Result<(EventResponse?), NSError>) -> Void)
+    func getLatestEvents(leagueID:String,completion: @escaping (Swift.Result<(LatestEventResponse?), NSError>) -> Void)
     
 }
 
 class LatestEventsAPIImpl : BaseAPI<LatestEventsNetworking>, LatestEventsAPI{
-    func getLatestEvents(leagueID:String,completion: @escaping (Swift.Result<(EventResponse?), NSError>) -> Void) {
-        self.fetchData(target: .getLatestEvent(leagueID: leagueID), responseClass: EventResponse.self) { (result) in
+    func getLatestEvents(leagueID:String,completion: @escaping (Swift.Result<(LatestEventResponse?), NSError>) -> Void) {
+        self.fetchData(target: .getLatestEvent(leagueID: leagueID), responseClass: LatestEventResponse.self) { (result) in
             completion(result)
         }
     }
