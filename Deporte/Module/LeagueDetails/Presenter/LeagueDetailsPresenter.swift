@@ -9,18 +9,46 @@
 import Foundation
 
 class LeageDetailsPresenter{
-    var leagueDetailsViewController:LeagueDetailsViewController!
+    
+    
+    var leagueName : String!
+    
     var teamsApi : TeamsAPIProtocol!
+    var myTeams : [Team] = []
+    weak var leagueDetailsViewController : LeagueDetailsViewController?
+
+    
+    
     var latestEventsApi:LatestEventsAPI!
     var upComingEventsApi:UpComingEventsAPI!
-    init(leagueDetailsViewController:LeagueDetailsViewController,
+    init(leagueName : String, leagueDetailsViewController:LeagueDetailsViewController,
          teamsApi : TeamsAPIProtocol,
          latestEventsApi:LatestEventsAPI,
          upComingEventsApi:UpComingEventsAPI) {
+        self.leagueName = leagueName
         self.latestEventsApi=latestEventsApi
         self.leagueDetailsViewController=leagueDetailsViewController
         self.teamsApi=teamsApi
         self.upComingEventsApi=upComingEventsApi
+    }
+    func attachView (leagueDetailsViewController : LeagueDetailsViewController){
+        self.leagueDetailsViewController = leagueDetailsViewController
+    }
+    
+    //fetching all teams for specific league from API
+    func getTeamsToTeamsCollectionView(){
+        teamsApi.getTeamsFromApi(leagueName: leagueName) { (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .success(let response):
+                    self.myTeams = response?.teams ?? []
+                    self.leagueDetailsViewController?.updatingTeamsCollectionView()
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     
     func requestData(leagueID:String, leagueName: String){
@@ -29,7 +57,7 @@ class LeageDetailsPresenter{
         upComingEventsApi.getAllUpComingEvents(){(result) in
             switch result{
                 case .success(let response):
-                    self.leagueDetailsViewController.upComingEvents = (response?.event ?? [])
+                    self.leagueDetailsViewController?.upComingEvents = (response?.event ?? [])
                     break
                 case .failure(let error):
                     print(error.localizedDescription)

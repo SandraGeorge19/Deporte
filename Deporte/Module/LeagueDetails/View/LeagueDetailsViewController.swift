@@ -18,7 +18,8 @@ protocol LeaguesDetailsProtocol {
 class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout , LeaguesDetailsProtocol{
     
     let myIndicator = UIActivityIndicatorView(style: .large)
-    var teamsPresenter : TeamsPresenter!
+    //var teamsPresenter : TeamsPresenter!
+    var leaguePresenter : LeageDetailsPresenter!
     var myTeams : [Team] = []
     var upComingEvents:[Event] = []
     var latestEvents:[Event] = []
@@ -63,8 +64,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             return 3
             
         case teamsCollectionView:
-            print(teamsPresenter.myTeams.count)
-            return teamsPresenter.myTeams.count
+            print(leaguePresenter.myTeams.count)
+            return leaguePresenter.myTeams.count
         default:
             return 3
         }
@@ -85,8 +86,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             return cell
         case teamsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
-            cell.teamsCell = teamsPresenter.myTeams[indexPath.row]
-            print(teamsPresenter.myTeams[indexPath.row].strTeam ?? "NoTHING")
+            cell.teamsCell = leaguePresenter.myTeams[indexPath.row]
+            print(leaguePresenter.myTeams[indexPath.row].strTeam ?? "NoTHING")
             
             return cell
         default:
@@ -128,7 +129,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         case latestEventCollectionView:
             break
         case teamsCollectionView:
-                let team = teamsPresenter.myTeams[indexPath.row]
+                let team = leaguePresenter.myTeams[indexPath.row]
                 
                 
                 let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
@@ -147,8 +148,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     }
     
     func initializingTeamsPresenterAndGetData(){
-        teamsPresenter.attachView(teamsView: self)
-        teamsPresenter.getTeamsToTeamsCollectionView()
+        leaguePresenter.attachView(leagueDetailsViewController: self)
+        leaguePresenter.getTeamsToTeamsCollectionView()
     }
     
     func updatingTeamsCollectionView() {
