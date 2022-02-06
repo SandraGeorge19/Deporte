@@ -140,11 +140,12 @@
             <connections>
                 <outlet property="awayTeamImageView" destination="VqB-f7-tvS" id="cGX-eQ-i0g"/>
                 <outlet property="awayTeamLabel" destination="FKe-O8-QUR" id="cyj-Ov-ITt"/>
+                <outlet property="dateLabel" destination="6ls-DL-MCO" id="JZt-BH-c66"/>
                 <outlet property="homeTeamImageView" destination="1Ft-cH-IB4" id="vej-hx-f5x"/>
                 <outlet property="homeTeamLabel" destination="S0B-eb-Nh0" id="omb-D2-His"/>
                 <outlet property="leagueNameLabel" destination="ROR-Hm-knX" id="Ql5-bl-nCH"/>
-                <outlet property="resultLabel" destination="lSC-8T-r9L" id="HTX-xe-1gR"/>
                 <outlet property="roundLabel" destination="KL5-kZ-RvY" id="0nP-pf-Bad"/>
+                <outlet property="timeLabel" destination="lSC-8T-r9L" id="bro-qL-ArS"/>
             </connections>
             <point key="canvasLocation" x="102.89855072463769" y="97.767857142857139"/>
         </collectionViewCell>
