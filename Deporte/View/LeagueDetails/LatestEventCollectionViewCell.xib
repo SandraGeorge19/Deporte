@@ -48,16 +48,10 @@
                             <constraint firstAttribute="width" constant="48" id="YYs-h7-ByJ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXe-uy-Heb">
-                        <rect key="frame" x="165" y="25" width="52" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXe-uy-Heb">
+                        <rect key="frame" x="157" y="28" width="68" height="43"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                         <color key="textColor" red="1" green="0.45882352941176469" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 OCT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMv-Tu-TpZ">
-                        <rect key="frame" x="165" y="57" width="52" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.57647058823529407" green="0.57647058823529407" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -65,18 +59,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="NZc-Jf-kJA" secondAttribute="bottom" constant="38" id="2u7-xt-oJB"/>
-                <constraint firstItem="uXe-uy-Heb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="25" id="32h-77-vN2"/>
                 <constraint firstItem="LDN-hw-z02" firstAttribute="leading" secondItem="NZc-Jf-kJA" secondAttribute="trailing" constant="8" id="8sW-lc-Nab"/>
                 <constraint firstAttribute="bottom" secondItem="LDN-hw-z02" secondAttribute="bottom" constant="25" id="CfN-11-L3B"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="DMv-Tu-TpZ" secondAttribute="bottom" constant="25" id="LaH-dJ-jvB"/>
                 <constraint firstAttribute="trailing" secondItem="Q0Q-SN-WsT" secondAttribute="trailing" constant="8" id="NKF-90-f1F"/>
-                <constraint firstItem="uXe-uy-Heb" firstAttribute="leading" secondItem="LDN-hw-z02" secondAttribute="trailing" constant="16" id="OUc-yH-qNv"/>
-                <constraint firstItem="HFC-oG-8PC" firstAttribute="leading" secondItem="DMv-Tu-TpZ" secondAttribute="trailing" constant="16" id="VCu-DI-FlI"/>
+                <constraint firstItem="uXe-uy-Heb" firstAttribute="leading" secondItem="LDN-hw-z02" secondAttribute="trailing" constant="8" id="OUc-yH-qNv"/>
                 <constraint firstItem="NZc-Jf-kJA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="38" id="efv-Pd-6HK"/>
                 <constraint firstAttribute="bottom" secondItem="Q0Q-SN-WsT" secondAttribute="bottom" constant="38" id="fUD-XT-YjM"/>
+                <constraint firstItem="uXe-uy-Heb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="28" id="hV6-Wc-X6c"/>
                 <constraint firstAttribute="bottom" secondItem="HFC-oG-8PC" secondAttribute="bottom" constant="25" id="kce-QO-VMS"/>
-                <constraint firstItem="HFC-oG-8PC" firstAttribute="leading" secondItem="uXe-uy-Heb" secondAttribute="trailing" constant="16" id="lrO-0y-uRD"/>
-                <constraint firstItem="DMv-Tu-TpZ" firstAttribute="leading" secondItem="LDN-hw-z02" secondAttribute="trailing" constant="16" id="stC-Ly-dQo"/>
+                <constraint firstItem="HFC-oG-8PC" firstAttribute="leading" secondItem="uXe-uy-Heb" secondAttribute="trailing" constant="8" id="lrO-0y-uRD"/>
                 <constraint firstItem="Q0Q-SN-WsT" firstAttribute="leading" secondItem="HFC-oG-8PC" secondAttribute="trailing" constant="8" id="tNZ-gB-f77"/>
                 <constraint firstItem="HFC-oG-8PC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="25" id="ueC-9T-NIo"/>
                 <constraint firstItem="NZc-Jf-kJA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="uih-S3-dFi"/>
@@ -90,6 +81,13 @@
                     <real key="value" value="8"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="awayTeamImageView" destination="LDN-hw-z02" id="XFb-kR-KJa"/>
+                <outlet property="awayTeamNameLabel" destination="NZc-Jf-kJA" id="AOK-Mc-0Vg"/>
+                <outlet property="homeTeamImageView" destination="HFC-oG-8PC" id="wth-aQ-tTV"/>
+                <outlet property="homeTeamNameLabel" destination="Q0Q-SN-WsT" id="PYG-v4-7Pv"/>
+                <outlet property="resultLabel" destination="uXe-uy-Heb" id="HDS-oK-gmL"/>
+            </connections>
             <point key="canvasLocation" x="-81.159420289855078" y="126.5625"/>
         </collectionViewCell>
     </objects>
