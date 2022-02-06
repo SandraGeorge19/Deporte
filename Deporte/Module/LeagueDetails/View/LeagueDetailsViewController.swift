@@ -19,9 +19,11 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     let myIndicator = UIActivityIndicatorView(style: .large)
     var teamsPresenter : TeamsPresenter!
-    @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
+    var myTeams : [Team] = []
+    var upComingEvents:[Event] = []
+    var latestEvents:[Event] = []
     
-
+    @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     @IBOutlet weak var latestEventCollectionView: UICollectionView!
     @IBOutlet weak var upComingEventsTableView: UICollectionView!
