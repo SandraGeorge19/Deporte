@@ -37,15 +37,15 @@ extension LeaguesTableViewController{
         print("HEllo from cell Leages")
         let leage = leaguesPresenter.myLeagues[indexPath.row]
         let leagueDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
-<<<<<<< HEAD
+
         
-        let leagueDetailsPresenter = LeageDetailsPresenter(leagueName: leage.strLeague ?? "", leagueDetailsViewController: leagueDetailVC, teamsApi: TeamsAPI(), latestEventsApi: LatestEventsAPIImpl(), upComingEventsApi: UpComingEventsAPIImpl())
-        leagueDetailVC.leaguePresenter = leagueDetailsPresenter
+        let leagueDetailsPresenter = LeagueDetailsPresenter( leagueDetailsViewController: leagueDetailVC, teamsApi: TeamsAPI(), latestEventsApi: LatestEventsAPIImpl(), upComingEventsApi: UpComingEventsAPIImpl())
+        //leagueDetailVC.leaguePresenter = leagueDetailsPresenter
 //        let leageDetailsPresenter = TeamsPresenter(teamsApi: TeamsAPI(), leagueName: leage.strLeague ?? "")
 //        leagueDetailVC.teamsPresenter = leageDetailsPresenter
-=======
+
         leagueDetailVC.currentLeague=leage
->>>>>>> main
+
         self.navigationController?.pushViewController(leagueDetailVC, animated: true)
     }
     /*

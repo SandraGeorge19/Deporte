@@ -20,11 +20,6 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     @IBOutlet weak var favoriteButton: UIButton!
     let myIndicator = UIActivityIndicatorView(style: .large)
-<<<<<<< HEAD
-    //var teamsPresenter : TeamsPresenter!
-    var leaguePresenter : LeageDetailsPresenter!
-=======
->>>>>>> main
     var myTeams : [Team] = []
     var upComingEvents:[Event] = []
     var latestEvents:[LatestEvent] = []
@@ -82,13 +77,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             return latestEvents.count
             
         case teamsCollectionView:
-<<<<<<< HEAD
-            print(leaguePresenter.myTeams.count)
-            return leaguePresenter.myTeams.count
-=======
             print(myTeams.count)
             return myTeams.count
->>>>>>> main
         default:
             return 0
         }
@@ -116,12 +106,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             return cell
         case teamsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
-<<<<<<< HEAD
-            cell.teamsCell = leaguePresenter.myTeams[indexPath.row]
-            print(leaguePresenter.myTeams[indexPath.row].strTeam ?? "NoTHING")
-=======
             cell.teamsCell = myTeams[indexPath.row]
->>>>>>> main
             
             return cell
         default:
@@ -164,13 +149,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         case latestEventCollectionView:
             break
         case teamsCollectionView:
-<<<<<<< HEAD
-                let team = leaguePresenter.myTeams[indexPath.row]
-                
-                
-=======
                 let team = myTeams[indexPath.row]
->>>>>>> main
                 let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
                 let teamPresent = TeamPresenter(myTeam: team)
                 teamDetailsVC.teamPresenter = teamPresent
@@ -186,14 +165,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         myIndicator.startAnimating()
     }
     
-<<<<<<< HEAD
-    func initializingTeamsPresenterAndGetData(){
-        leaguePresenter.attachView(leagueDetailsViewController: self)
-        leaguePresenter.getTeamsToTeamsCollectionView()
-    }
-=======
 
->>>>>>> main
     
     func updateCollectionView() {
         upComingEventsTableView.reloadData()
