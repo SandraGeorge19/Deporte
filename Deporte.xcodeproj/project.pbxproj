@@ -70,7 +70,20 @@
 		B6D0783F27AB6BAD00D87580 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D0783E27AB6BAD00D87580 /* NetworkMonitor.swift */; };
 		B6D2C5A027A49A890047D06A /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2C59F27A49A890047D06A /* Sport.swift */; };
 		B6D2C5A227A4A64B0047D06A /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2C5A127A4A64B0047D06A /* FavTableViewCell.swift */; };
+		B6FA3BE027B1AFC30007E0AA /* DeporteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FA3BDF27B1AFC30007E0AA /* DeporteTests.swift */; };
+		B6FA3BE827B1B14E0007E0AA /* AllLeaguesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FA3BE727B1B14E0007E0AA /* AllLeaguesTests.swift */; };
+		B6FA3BEA27B1B47D0007E0AA /* AllTeamsForLeagueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FA3BE927B1B47D0007E0AA /* AllTeamsForLeagueTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B6FA3BE227B1AFC30007E0AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B61F7F5127A419AD002C014F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B61F7F5827A419AD002C014F;
+			remoteInfo = Deporte;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		231CEE56EE24545B8C39B2DB /* Pods-Deporte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Deporte.release.xcconfig"; path = "Target Support Files/Pods-Deporte/Pods-Deporte.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +152,11 @@
 		B6D0783E27AB6BAD00D87580 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		B6D2C59F27A49A890047D06A /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		B6D2C5A127A4A64B0047D06A /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
+		B6FA3BDD27B1AFC30007E0AA /* DeporteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeporteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6FA3BDF27B1AFC30007E0AA /* DeporteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeporteTests.swift; sourceTree = "<group>"; };
+		B6FA3BE127B1AFC30007E0AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6FA3BE727B1B14E0007E0AA /* AllLeaguesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLeaguesTests.swift; sourceTree = "<group>"; };
+		B6FA3BE927B1B47D0007E0AA /* AllTeamsForLeagueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamsForLeagueTests.swift; sourceTree = "<group>"; };
 		C3C59F565D10D5BBDE52C0B5 /* Pods-Deporte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Deporte.debug.xcconfig"; path = "Target Support Files/Pods-Deporte/Pods-Deporte.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +166,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B30CFF11169ED2CBFAA939C /* Pods_Deporte.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6FA3BDA27B1AFC30007E0AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				B61F7F5B27A419AD002C014F /* Deporte */,
+				B6FA3BDE27B1AFC30007E0AA /* DeporteTests */,
 				B61F7F5A27A419AD002C014F /* Products */,
 				D8714B8070B4A28CBFF50108 /* Pods */,
 				2B7A8295A40B26BD354E6061 /* Frameworks */,
@@ -319,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				B61F7F5927A419AD002C014F /* Deporte.app */,
+				B6FA3BDD27B1AFC30007E0AA /* DeporteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -578,6 +605,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		B6FA3BDE27B1AFC30007E0AA /* DeporteTests */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA3BE927B1B47D0007E0AA /* AllTeamsForLeagueTests.swift */,
+				B6FA3BE727B1B14E0007E0AA /* AllLeaguesTests.swift */,
+				B6FA3BDF27B1AFC30007E0AA /* DeporteTests.swift */,
+				B6FA3BE127B1AFC30007E0AA /* Info.plist */,
+			);
+			path = DeporteTests;
+			sourceTree = "<group>";
+		};
 		D8714B8070B4A28CBFF50108 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +647,24 @@
 			productReference = B61F7F5927A419AD002C014F /* Deporte.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B6FA3BDC27B1AFC30007E0AA /* DeporteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6FA3BE627B1AFC30007E0AA /* Build configuration list for PBXNativeTarget "DeporteTests" */;
+			buildPhases = (
+				B6FA3BD927B1AFC30007E0AA /* Sources */,
+				B6FA3BDA27B1AFC30007E0AA /* Frameworks */,
+				B6FA3BDB27B1AFC30007E0AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6FA3BE327B1AFC30007E0AA /* PBXTargetDependency */,
+			);
+			name = DeporteTests;
+			productName = DeporteTests;
+			productReference = B6FA3BDD27B1AFC30007E0AA /* DeporteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -621,6 +677,10 @@
 				TargetAttributes = {
 					B61F7F5827A419AD002C014F = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					B6FA3BDC27B1AFC30007E0AA = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = B61F7F5827A419AD002C014F;
 					};
 				};
 			};
@@ -638,6 +698,7 @@
 			projectRoot = "";
 			targets = (
 				B61F7F5827A419AD002C014F /* Deporte */,
+				B6FA3BDC27B1AFC30007E0AA /* DeporteTests */,
 			);
 		};
 /* End PBXProject section */
@@ -659,6 +720,13 @@
 				B61F7F6427A419AD002C014F /* Main.storyboard in Resources */,
 				2B51A48A27AA8BE400642B0F /* LatestEventsTableViewCell.xib in Resources */,
 				2B51A49527AA8CA200642B0F /* UpComingEventCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6FA3BDB27B1AFC30007E0AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +833,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B6FA3BD927B1AFC30007E0AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6FA3BE827B1B14E0007E0AA /* AllLeaguesTests.swift in Sources */,
+				B6FA3BEA27B1B47D0007E0AA /* AllTeamsForLeagueTests.swift in Sources */,
+				B6FA3BE027B1AFC30007E0AA /* DeporteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6FA3BE327B1AFC30007E0AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B61F7F5827A419AD002C014F /* Deporte */;
+			targetProxy = B6FA3BE227B1AFC30007E0AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B61F7F6227A419AD002C014F /* Main.storyboard */ = {
@@ -937,6 +1023,44 @@
 			};
 			name = Release;
 		};
+		B6FA3BE427B1AFC30007E0AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DeporteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = swift.DeporteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deporte.app/Deporte";
+			};
+			name = Debug;
+		};
+		B6FA3BE527B1AFC30007E0AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DeporteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = swift.DeporteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deporte.app/Deporte";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -954,6 +1078,15 @@
 			buildConfigurations = (
 				B61F7F7127A419AE002C014F /* Debug */,
 				B61F7F7227A419AE002C014F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6FA3BE627B1AFC30007E0AA /* Build configuration list for PBXNativeTarget "DeporteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6FA3BE427B1AFC30007E0AA /* Debug */,
+				B6FA3BE527B1AFC30007E0AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
