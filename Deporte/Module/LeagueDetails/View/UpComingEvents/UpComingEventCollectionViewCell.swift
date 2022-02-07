@@ -22,7 +22,6 @@ class UpComingEventCollectionViewCell: UICollectionViewCell {
     var teams:[Team] = []
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     func setUpView(){
         awayTeamLabel.text = event?.strAwayTeam ?? ""

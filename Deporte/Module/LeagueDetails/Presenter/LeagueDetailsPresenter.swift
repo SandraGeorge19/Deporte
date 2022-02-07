@@ -10,33 +10,31 @@ import Foundation
 class LeagueDetailsPresenter{
     var leagueDetailsViewController:LeagueDetailsViewController!
     var teamsApi : TeamsAPIProtocol!
-    var latestEventsApi:LatestEventsAPI!
-    var upComingEventsApi:UpComingEventsAPI!
+    var eventsApi:EventsAPI!
     init(leagueDetailsViewController:LeagueDetailsViewController,
          teamsApi : TeamsAPIProtocol,
-         latestEventsApi:LatestEventsAPI,
-         upComingEventsApi:UpComingEventsAPI) {
-        self.latestEventsApi=latestEventsApi
+         eventsApi:EventsAPI) {
+        self.eventsApi=eventsApi
         self.leagueDetailsViewController=leagueDetailsViewController
         self.teamsApi=teamsApi
-        self.upComingEventsApi=upComingEventsApi
     }
     
     func requestData(leagueID:String, leagueName: String){
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        upComingEventsApi.getAllUpComingEvents(leagueID:leagueID){(result) in
+        eventsApi.getEvents(leagueID:leagueID){(result) in
             switch result{
             case .success(let response):
                 print("Sucess upcom")
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+                dateFormatter.dateFormat = "yyyy-MM-dd"
                 self.leagueDetailsViewController.upComingEvents = (response?.events.filter{ (event) in
-//                    event.dateEvent?.getDateFromString(dateFormatter: DateFormatter.getDateFormatterYYYY_MM_DD()).hasEnded() as! Bool
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    let date=dateFormatter.date(from:event.dateEvent ?? "")!
-                    return !date.hasEnded()
+                    event.dateEvent?.getDateFromString(dateFormatter: DateFormatter.getDateFormatterYYYY_MM_DD()).hasNotStarted() ?? false
                     } ?? [])
+                self.leagueDetailsViewController.latestEvents = (response?.events.filter{ (event) in
+                event.dateEvent?.getDateFromString(dateFormatter: DateFormatter.getDateFormatterYYYY_MM_DD()).hasEnded() ?? false
+                } ?? [])
                 break
             case .failure(let error):
                 print("fail upcoming")
@@ -48,21 +46,21 @@ class LeagueDetailsPresenter{
             dispatchGroup.leave()
             
         }
-        dispatchGroup.enter()
-        latestEventsApi.getLatestEvents(leagueID: leagueID){(result) in
-            switch result{
-            case .success(let response):
-                print("Sucess latest \(String(describing: response?.events.count))")
-                self.leagueDetailsViewController.latestEvents = (response?.events ?? [])
-                break
-            case .failure(let error):
-                print("fail larest")
-                print(error.code)
-                break
-                
-            }
-            dispatchGroup.leave()
-        }
+//        dispatchGroup.enter()
+//        latestEventsApi.getLatestEvents(leagueID: leagueID){(result) in
+//            switch result{
+//            case .success(let response):
+//                print("Sucess latest \(String(describing: response?.events.count))")
+//                self.leagueDetailsViewController.latestEvents = (response?.events ?? [])
+//                break
+//            case .failure(let error):
+//                print("fail larest")
+//                print(error.code)
+//                break
+//
+//            }
+//            dispatchGroup.leave()
+//        }
         dispatchGroup.enter()
         teamsApi.getTeamsFromApi(leagueName: leagueName) { (result) in
             switch result{

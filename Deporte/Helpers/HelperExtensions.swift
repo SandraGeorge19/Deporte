@@ -21,6 +21,10 @@ extension Date {
         return self.timeIntervalSinceNow.sign == .minus
 
     }
+    func hasNotStarted() -> Bool {
+         return self.timeIntervalSinceNow.sign == .plus
+
+     }
 }
 extension String {
     func getDateDayAsNumberAndMonthAsString() -> String{

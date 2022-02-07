@@ -29,7 +29,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     let myIndicator = UIActivityIndicatorView(style: .large)
     var myTeams : [Team] = []
     var upComingEvents:[Event] = []
-    var latestEvents:[LatestEvent] = []
+    var latestEvents:[Event] = []
     var currentLeague:League!
     
     var leagueDetailsPresenter:LeagueDetailsPresenter!
@@ -61,8 +61,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     func initPresenter(){
         leagueDetailsPresenter = LeagueDetailsPresenter(leagueDetailsViewController: self,
                                                         teamsApi: TeamsAPI(),
-                                                        latestEventsApi: LatestEventsAPIImpl(),
-                                                        upComingEventsApi: UpComingEventsAPIImpl())
+                                                        eventsApi: EventsAPIImpl())
     }
     func requestData(){
         leagueDetailsPresenter.requestData(leagueID: currentLeague.idLeague ?? "", leagueName:currentLeague.strLeague ?? "")

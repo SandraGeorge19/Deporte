@@ -15,7 +15,7 @@ class LatestEventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var homeTeamImageView: UIImageView!
     @IBOutlet weak var awayTeamImageView: UIImageView!
-    var event:LatestEvent?
+    var event:Event?
     var teams:[Team] = []
     override func awakeFromNib() {
         super.awakeFromNib()
