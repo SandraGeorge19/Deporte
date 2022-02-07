@@ -11,7 +11,7 @@ import Alamofire
 
 
 enum UpComingEventsNetworking{
-    case getUpComingEvents
+    case getUpComingEvents(leagueID:String)
 }
 
 extension UpComingEventsNetworking : TargetType{
@@ -38,8 +38,8 @@ extension UpComingEventsNetworking : TargetType{
     
     var task: Task {
         switch self {
-        case .getUpComingEvents:
-            return .requestPlain
+        case .getUpComingEvents(let leagueID):
+            return .requestParam(parameters: ["id" : leagueID], encoding: URLEncoding.default)
         }
     }
     

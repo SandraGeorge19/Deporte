@@ -28,7 +28,7 @@ class UpComingEventCollectionViewCell: UICollectionViewCell {
         awayTeamLabel.text = event?.strAwayTeam ?? ""
         homeTeamLabel.text = event?.strHomeTeam ?? ""
         roundLabel.text = "Week \(event?.intRound ?? "")"
-        timeLabel.text = "\(event?.strTime?.prefix(6) ?? "")"
+        timeLabel.text = "\(event?.strTime?.prefix(5) ?? "")"
         dateLabel.text = event?.dateEvent?.getDateDayAsNumberAndMonthAsString()
                 if teams.count > 0 {
                     var list=teams.filter{(team) in

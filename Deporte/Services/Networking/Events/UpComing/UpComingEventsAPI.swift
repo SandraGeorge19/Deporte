@@ -9,13 +9,13 @@
 import Foundation
 
 protocol UpComingEventsAPI {
-    func getAllUpComingEvents(completion: @escaping (Swift.Result<(EventResponse?), NSError>) -> Void)
+    func getAllUpComingEvents(leagueID:String, completion: @escaping (Swift.Result<(EventResponse?), NSError>) -> Void)
     
 }
 
 class UpComingEventsAPIImpl : BaseAPI<UpComingEventsNetworking>, UpComingEventsAPI{
-    func getAllUpComingEvents(completion: @escaping (Swift.Result<(EventResponse?), NSError>) -> Void) {
-        self.fetchData(target: .getUpComingEvents, responseClass: EventResponse.self) { (result) in
+    func getAllUpComingEvents(leagueID:String, completion: @escaping (Swift.Result<(EventResponse?), NSError>) -> Void) {
+        self.fetchData(target: .getUpComingEvents(leagueID: leagueID), responseClass: EventResponse.self) { (result) in
             completion(result)
         }
     }

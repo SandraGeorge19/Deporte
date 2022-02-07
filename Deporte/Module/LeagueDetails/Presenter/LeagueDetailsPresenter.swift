@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 class LeagueDetailsPresenter{
     var leagueDetailsViewController:LeagueDetailsViewController!
     var teamsApi : TeamsAPIProtocol!
@@ -26,12 +25,17 @@ class LeagueDetailsPresenter{
     func requestData(leagueID:String, leagueName: String){
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        upComingEventsApi.getAllUpComingEvents(){(result) in
+        upComingEventsApi.getAllUpComingEvents(leagueID:leagueID){(result) in
             switch result{
             case .success(let response):
                 print("Sucess upcom")
-                self.leagueDetailsViewController.upComingEvents = (response?.event.filter{ (event) in
-                    event.idLeague==leagueID
+                self.leagueDetailsViewController.upComingEvents = (response?.events.filter{ (event) in
+//                    event.dateEvent?.getDateFromString(dateFormatter: DateFormatter.getDateFormatterYYYY_MM_DD()).hasEnded() as! Bool
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    let date=dateFormatter.date(from:event.dateEvent ?? "")!
+                    return !date.hasEnded()
                     } ?? [])
                 break
             case .failure(let error):

@@ -9,7 +9,7 @@
 import Foundation
 
 class EventResponse:Codable{
-    var event: [Event]
+    var events: [Event]
 }
 class LatestEventResponse:Codable{
     var events: [LatestEvent]
