@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:LeagueDB+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:LeagueDB+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:Deporte.xcodeproj">
    </FileRef>
    <FileRef

@@ -17,8 +17,15 @@ protocol LeaguesDetailsProtocol {
 
 class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout , LeaguesDetailsProtocol{
     
-    
+    //MARK: --IBOutlets
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var teamsCollectionView: UICollectionView!
+    @IBOutlet weak var latestEventCollectionView: UICollectionView!
+    @IBOutlet weak var upComingEventsTableView: UICollectionView!
+
+    
+    //MARK: --Properties
     let myIndicator = UIActivityIndicatorView(style: .large)
     var myTeams : [Team] = []
     var upComingEvents:[Event] = []
@@ -26,10 +33,9 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     var currentLeague:League!
     
     var leagueDetailsPresenter:LeagueDetailsPresenter!
-    @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
-    @IBOutlet weak var teamsCollectionView: UICollectionView!
-    @IBOutlet weak var latestEventCollectionView: UICollectionView!
-    @IBOutlet weak var upComingEventsTableView: UICollectionView!
+    
+    
+    //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

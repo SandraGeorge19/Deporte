@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r7k-nm-Xjt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r7k-nm-Xjt">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -353,10 +353,10 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4n4-vt-kmN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OHX-DY-yVk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </collectionViewCellContentView>
                                                     </collectionViewCell>
@@ -392,17 +392,19 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up Coming Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZr-hq-lJS">
-                                                <rect key="frame" x="16" y="16" width="320" height="24"/>
+                                                <rect key="frame" x="16" y="16" width="314" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilV-Jn-Qci">
-                                                <rect key="frame" x="352" y="16" width="30" height="30"/>
+                                                <rect key="frame" x="346" y="8.3333333333333321" width="44" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="Rbe-aX-tPv"/>
-                                                    <constraint firstAttribute="height" constant="30" id="tnq-RP-H7F"/>
+                                                    <constraint firstAttribute="width" constant="44" id="Rbe-aX-tPv"/>
+                                                    <constraint firstAttribute="height" constant="44.333333333333329" id="tnq-RP-H7F"/>
                                                 </constraints>
+                                                <color key="tintColor" red="0.21176470589999999" green="0.0" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" backgroundImage="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="onPressFavoriteBtn:" destination="BcD-g7-Zzr" eventType="touchUpInside" id="V9Q-iZ-yUJ"/>
                                                 </connections>
@@ -415,7 +417,7 @@
                                             <constraint firstItem="y6l-TT-8Rk" firstAttribute="top" secondItem="4a2-9s-2EO" secondAttribute="bottom" constant="16" id="Arf-k8-sM4"/>
                                             <constraint firstItem="Ubs-nd-ivm" firstAttribute="top" secondItem="43S-Mx-M4R" secondAttribute="bottom" constant="8" id="D6g-Sa-tgo"/>
                                             <constraint firstItem="ilV-Jn-Qci" firstAttribute="leading" secondItem="VZr-hq-lJS" secondAttribute="trailing" constant="16" id="Enz-kN-9eU"/>
-                                            <constraint firstItem="ilV-Jn-Qci" firstAttribute="top" secondItem="Ef9-FH-wdU" secondAttribute="top" constant="16" id="FA8-Mr-xat"/>
+                                            <constraint firstItem="ilV-Jn-Qci" firstAttribute="top" secondItem="Ef9-FH-wdU" secondAttribute="top" constant="8" id="FA8-Mr-xat"/>
                                             <constraint firstItem="4a2-9s-2EO" firstAttribute="leading" secondItem="Ef9-FH-wdU" secondAttribute="leading" id="JE8-vA-nD0"/>
                                             <constraint firstItem="VZr-hq-lJS" firstAttribute="leading" secondItem="Ef9-FH-wdU" secondAttribute="leading" constant="16" id="JWc-4p-QOZ"/>
                                             <constraint firstAttribute="bottom" secondItem="Ubs-nd-ivm" secondAttribute="bottom" id="JYu-gz-dNa"/>
@@ -428,7 +430,7 @@
                                             <constraint firstItem="43S-Mx-M4R" firstAttribute="leading" secondItem="Ef9-FH-wdU" secondAttribute="leading" constant="16" id="nKr-kj-wEE"/>
                                             <constraint firstAttribute="trailing" secondItem="9eb-Nn-tE6" secondAttribute="trailing" id="rym-E4-KNY"/>
                                             <constraint firstItem="4a2-9s-2EO" firstAttribute="top" secondItem="VZr-hq-lJS" secondAttribute="bottom" constant="8" id="sUI-O0-IAs"/>
-                                            <constraint firstAttribute="trailing" secondItem="ilV-Jn-Qci" secondAttribute="trailing" constant="16" id="tke-td-M8o"/>
+                                            <constraint firstAttribute="trailing" secondItem="ilV-Jn-Qci" secondAttribute="trailing" constant="8" id="tke-td-M8o"/>
                                             <constraint firstItem="VZr-hq-lJS" firstAttribute="top" secondItem="Ef9-FH-wdU" secondAttribute="top" constant="16" id="vIe-gB-InC"/>
                                             <constraint firstItem="9eb-Nn-tE6" firstAttribute="top" secondItem="y6l-TT-8Rk" secondAttribute="bottom" constant="8" id="wfy-rf-YT6"/>
                                         </constraints>
@@ -883,9 +885,10 @@
         <image name="BG" width="1280" height="720"/>
         <image name="Profile" width="512" height="512"/>
         <image name="facebook" width="512" height="512"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="instagram" width="512" height="512"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="star" catalog="system" width="64" height="58"/>
+        <image name="star.fill" catalog="system" width="64" height="58"/>
         <image name="twitter" width="512" height="512"/>
         <image name="world-wide-web" width="512" height="512"/>
         <image name="youtube2" width="945" height="703"/>
