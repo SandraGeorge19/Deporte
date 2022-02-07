@@ -8,11 +8,16 @@
 
 import Foundation
 
+<<<<<<< HEAD
 class LeageDetailsPresenter{
     
     
     var leagueName : String!
     
+=======
+class LeagueDetailsPresenter{
+    var leagueDetailsViewController:LeagueDetailsViewController!
+>>>>>>> main
     var teamsApi : TeamsAPIProtocol!
     var myTeams : [Team] = []
     weak var leagueDetailsViewController : LeagueDetailsViewController?
@@ -56,6 +61,7 @@ class LeageDetailsPresenter{
         dispatchGroup.enter()
         upComingEventsApi.getAllUpComingEvents(){(result) in
             switch result{
+<<<<<<< HEAD
                 case .success(let response):
                     self.leagueDetailsViewController?.upComingEvents = (response?.event ?? [])
                     break
@@ -63,23 +69,59 @@ class LeageDetailsPresenter{
                     print(error.localizedDescription)
                     
                     break
+=======
+            case .success(let response):
+                print("Sucess upcom")
+                self.leagueDetailsViewController.upComingEvents = (response?.event.filter{ (event) in
+                    event.idLeague==leagueID
+                    } ?? [])
+                break
+            case .failure(let error):
+                print("fail upcoming")
+                print(error.domain)
+                
+                break
                 
             }
             dispatchGroup.leave()
-        
+            
+        }
+        dispatchGroup.enter()
+        latestEventsApi.getLatestEvents(leagueID: leagueID){(result) in
+            switch result{
+            case .success(let response):
+                print("Sucess latest \(String(describing: response?.events.count))")
+                self.leagueDetailsViewController.latestEvents = (response?.events ?? [])
+                break
+            case .failure(let error):
+                print("fail larest")
+                print(error.code)
+                break
+>>>>>>> main
+                
+            }
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        teamsApi.getTeamsFromApi(leagueName: leagueName) { (result) in
+            switch result{
+            case .success(let response):
+                print("Sucess \(String(describing: response?.teams.count) )")
+                self.leagueDetailsViewController.myTeams = (response?.teams ?? [])
+                break
+            case .failure(let error):
+                print("fail teams")
+                print(error.domain)
+            }
+            dispatchGroup.leave()
+        }
+    
+        dispatchGroup.notify(queue: .main){
+            print("notify")
+            self.leagueDetailsViewController.updateCollectionView()
         }
     }
     
+    
 
-
-      private func getHomeDataWithDispatchGroup() {
-          
-
-
-//
-//          /// `Notify Main thread`
-//          dispatchGroup.notify(queue: .main) {
-//              self.isLoading = true
-//          }
-      }
 }

@@ -39,7 +39,7 @@ extension UpComingEventsNetworking : TargetType{
     var task: Task {
         switch self {
         case .getUpComingEvents:
-            return .requestParam(parameters: ["e" : ""], encoding: URLEncoding.default)
+            return .requestPlain
         }
     }
     

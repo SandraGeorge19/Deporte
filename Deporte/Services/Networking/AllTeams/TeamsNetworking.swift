@@ -24,7 +24,7 @@ extension TeamsNetworking : TargetType{
     
     var path: String {
         switch self {
-        case .getAllTeamsForLeague(let leageName):
+        case .getAllTeamsForLeague:
             return Constants.GET_TEAM_DETAILS
         }
     }

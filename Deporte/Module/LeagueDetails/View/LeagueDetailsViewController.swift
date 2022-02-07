@@ -12,18 +12,25 @@ import Alamofire
 
 
 protocol LeaguesDetailsProtocol {
-    func updatingTeamsCollectionView()
+    func updateCollectionView()
 }
 
 class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout , LeaguesDetailsProtocol{
     
+    
+    @IBOutlet weak var favoriteButton: UIButton!
     let myIndicator = UIActivityIndicatorView(style: .large)
+<<<<<<< HEAD
     //var teamsPresenter : TeamsPresenter!
     var leaguePresenter : LeageDetailsPresenter!
+=======
+>>>>>>> main
     var myTeams : [Team] = []
     var upComingEvents:[Event] = []
-    var latestEvents:[Event] = []
+    var latestEvents:[LatestEvent] = []
+    var currentLeague:League!
     
+    var leagueDetailsPresenter:LeagueDetailsPresenter!
     @IBOutlet weak var latesteEventCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     @IBOutlet weak var latestEventCollectionView: UICollectionView!
@@ -43,14 +50,23 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         latestEventCollectionView.register(myCell2, forCellWithReuseIdentifier: "LatestEventCollectionViewCell")
         let myCell3 = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
         teamsCollectionView.register(myCell3, forCellWithReuseIdentifier: "TeamCollectionViewCell")
-        latesteEventCollectionHeight.constant = (98 + 16) * 3
+        latesteEventCollectionHeight.constant = (98 + 16) * 5
         // Do any additional setup after loading the view.
         
-        
-        
+        initPresenter()
+        requestData()
         startIndicator()
-        
-        initializingTeamsPresenterAndGetData()
+    }
+    func initPresenter(){
+        leagueDetailsPresenter = LeagueDetailsPresenter(leagueDetailsViewController: self,
+                                                        teamsApi: TeamsAPI(),
+                                                        latestEventsApi: LatestEventsAPIImpl(),
+                                                        upComingEventsApi: UpComingEventsAPIImpl())
+    }
+    func requestData(){
+        leagueDetailsPresenter.requestData(leagueID: currentLeague.idLeague ?? "", leagueName:currentLeague.strLeague ?? "")
+    }
+    @IBAction func onPressFavoriteBtn(_ sender: Any) {
         
         
     }
@@ -58,16 +74,23 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case upComingEventsTableView:
-            return 3
+            print(upComingEvents.count)
+            return upComingEvents.count
         
         case latestEventCollectionView:
-            return 3
+            print(latestEvents.count)
+            return latestEvents.count
             
         case teamsCollectionView:
+<<<<<<< HEAD
             print(leaguePresenter.myTeams.count)
             return leaguePresenter.myTeams.count
+=======
+            print(myTeams.count)
+            return myTeams.count
+>>>>>>> main
         default:
-            return 3
+            return 0
         }
         
     }
@@ -78,21 +101,33 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         switch collectionView {
         case upComingEventsTableView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventCollectionViewCell", for: indexPath) as? UpComingEventCollectionViewCell else { return UICollectionViewCell() }
-            
+                cell.event=upComingEvents[indexPath.row]
+              cell.teams=myTeams
+              cell.setUpView()
             return cell
         case latestEventCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-            
+            print("cellss \(myTeams.count)")
+            print("Events \(latestEvents.count)")
+
+            cell.event=latestEvents[indexPath.row]
+            cell.teams=myTeams
+            cell.setUpView()
             return cell
         case teamsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
+<<<<<<< HEAD
             cell.teamsCell = leaguePresenter.myTeams[indexPath.row]
             print(leaguePresenter.myTeams[indexPath.row].strTeam ?? "NoTHING")
+=======
+            cell.teamsCell = myTeams[indexPath.row]
+>>>>>>> main
             
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-            
+            cell.event=latestEvents[indexPath.row]
+            cell.teams=myTeams
             return cell
         }
     }
@@ -129,11 +164,15 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         case latestEventCollectionView:
             break
         case teamsCollectionView:
+<<<<<<< HEAD
                 let team = leaguePresenter.myTeams[indexPath.row]
                 
                 
+=======
+                let team = myTeams[indexPath.row]
+>>>>>>> main
                 let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
-               let teamPresent = TeamPresenter(myTeam: team)
+                let teamPresent = TeamPresenter(myTeam: team)
                 teamDetailsVC.teamPresenter = teamPresent
                 self.present(teamDetailsVC,animated: true,completion: nil)
         default:
@@ -147,13 +186,20 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         myIndicator.startAnimating()
     }
     
+<<<<<<< HEAD
     func initializingTeamsPresenterAndGetData(){
         leaguePresenter.attachView(leagueDetailsViewController: self)
         leaguePresenter.getTeamsToTeamsCollectionView()
     }
+=======
+
+>>>>>>> main
     
-    func updatingTeamsCollectionView() {
-        self.teamsCollectionView.reloadData()
+    func updateCollectionView() {
+        upComingEventsTableView.reloadData()
+        latesteEventCollectionHeight.constant = CGFloat((98) * latestEvents.count)
+        latestEventCollectionView.reloadData()
+        teamsCollectionView.reloadData()
         myIndicator.stopAnimating()
     }
 

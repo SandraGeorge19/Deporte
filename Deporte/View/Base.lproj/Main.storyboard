@@ -392,11 +392,21 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up Coming Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZr-hq-lJS">
-                                                <rect key="frame" x="16" y="16" width="366" height="24"/>
+                                                <rect key="frame" x="16" y="16" width="320" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilV-Jn-Qci">
+                                                <rect key="frame" x="352" y="16" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="Rbe-aX-tPv"/>
+                                                    <constraint firstAttribute="height" constant="30" id="tnq-RP-H7F"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onPressFavoriteBtn:" destination="BcD-g7-Zzr" eventType="touchUpInside" id="V9Q-iZ-yUJ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -404,7 +414,8 @@
                                             <constraint firstItem="43S-Mx-M4R" firstAttribute="top" secondItem="9eb-Nn-tE6" secondAttribute="bottom" constant="16" id="9Ix-HI-978"/>
                                             <constraint firstItem="y6l-TT-8Rk" firstAttribute="top" secondItem="4a2-9s-2EO" secondAttribute="bottom" constant="16" id="Arf-k8-sM4"/>
                                             <constraint firstItem="Ubs-nd-ivm" firstAttribute="top" secondItem="43S-Mx-M4R" secondAttribute="bottom" constant="8" id="D6g-Sa-tgo"/>
-                                            <constraint firstAttribute="trailing" secondItem="VZr-hq-lJS" secondAttribute="trailing" constant="16" id="G4I-fL-VxG"/>
+                                            <constraint firstItem="ilV-Jn-Qci" firstAttribute="leading" secondItem="VZr-hq-lJS" secondAttribute="trailing" constant="16" id="Enz-kN-9eU"/>
+                                            <constraint firstItem="ilV-Jn-Qci" firstAttribute="top" secondItem="Ef9-FH-wdU" secondAttribute="top" constant="16" id="FA8-Mr-xat"/>
                                             <constraint firstItem="4a2-9s-2EO" firstAttribute="leading" secondItem="Ef9-FH-wdU" secondAttribute="leading" id="JE8-vA-nD0"/>
                                             <constraint firstItem="VZr-hq-lJS" firstAttribute="leading" secondItem="Ef9-FH-wdU" secondAttribute="leading" constant="16" id="JWc-4p-QOZ"/>
                                             <constraint firstAttribute="bottom" secondItem="Ubs-nd-ivm" secondAttribute="bottom" id="JYu-gz-dNa"/>
@@ -417,6 +428,7 @@
                                             <constraint firstItem="43S-Mx-M4R" firstAttribute="leading" secondItem="Ef9-FH-wdU" secondAttribute="leading" constant="16" id="nKr-kj-wEE"/>
                                             <constraint firstAttribute="trailing" secondItem="9eb-Nn-tE6" secondAttribute="trailing" id="rym-E4-KNY"/>
                                             <constraint firstItem="4a2-9s-2EO" firstAttribute="top" secondItem="VZr-hq-lJS" secondAttribute="bottom" constant="8" id="sUI-O0-IAs"/>
+                                            <constraint firstAttribute="trailing" secondItem="ilV-Jn-Qci" secondAttribute="trailing" constant="16" id="tke-td-M8o"/>
                                             <constraint firstItem="VZr-hq-lJS" firstAttribute="top" secondItem="Ef9-FH-wdU" secondAttribute="top" constant="16" id="vIe-gB-InC"/>
                                             <constraint firstItem="9eb-Nn-tE6" firstAttribute="top" secondItem="y6l-TT-8Rk" secondAttribute="bottom" constant="8" id="wfy-rf-YT6"/>
                                         </constraints>
@@ -449,6 +461,7 @@
                         <viewLayoutGuide key="safeArea" id="K4i-Fw-Ohn"/>
                     </view>
                     <connections>
+                        <outlet property="favoriteButton" destination="ilV-Jn-Qci" id="cwz-pp-Ewz"/>
                         <outlet property="latestEventCollectionView" destination="9eb-Nn-tE6" id="QI2-Ke-1FK"/>
                         <outlet property="latesteEventCollectionHeight" destination="AB4-cu-VmJ" id="0zV-N2-XVV"/>
                         <outlet property="teamsCollectionView" destination="Ubs-nd-ivm" id="kVV-dE-sT2"/>
@@ -457,7 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkz-W4-e2X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4690" y="17"/>
+            <point key="canvasLocation" x="4689.8550724637689" y="16.741071428571427"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="7xQ-3C-kda">
