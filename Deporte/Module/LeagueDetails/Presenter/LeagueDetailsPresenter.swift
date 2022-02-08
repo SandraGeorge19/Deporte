@@ -20,6 +20,7 @@ class LeagueDetailsPresenter{
     }
     
     func requestData(leagueID:String, leagueName: String){
+        leagueDetailsViewController.isFavorite = CoreDataServices.isLeagueExists(leagueID: leagueID)
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         eventsApi.getEvents(leagueID:leagueID){(result) in
@@ -46,21 +47,6 @@ class LeagueDetailsPresenter{
             dispatchGroup.leave()
             
         }
-//        dispatchGroup.enter()
-//        latestEventsApi.getLatestEvents(leagueID: leagueID){(result) in
-//            switch result{
-//            case .success(let response):
-//                print("Sucess latest \(String(describing: response?.events.count))")
-//                self.leagueDetailsViewController.latestEvents = (response?.events ?? [])
-//                break
-//            case .failure(let error):
-//                print("fail larest")
-//                print(error.code)
-//                break
-//
-//            }
-//            dispatchGroup.leave()
-//        }
         dispatchGroup.enter()
         teamsApi.getTeamsFromApi(leagueName: leagueName) { (result) in
             switch result{

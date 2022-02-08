@@ -23,7 +23,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     @IBOutlet weak var latestEventCollectionView: UICollectionView!
     @IBOutlet weak var upComingEventsTableView: UICollectionView!
-
+    
     
     //MARK: --Properties
     let myIndicator = UIActivityIndicatorView(style: .large)
@@ -102,7 +102,7 @@ class LeagueDetailsViewController: UIViewController {
         myIndicator.startAnimating()
     }
     
-
+    
     
     func updateCollectionView() {
         upComingEventsTableView.reloadData()
@@ -112,5 +112,5 @@ class LeagueDetailsViewController: UIViewController {
         myIndicator.stopAnimating()
     }
     
-
+    
 }
