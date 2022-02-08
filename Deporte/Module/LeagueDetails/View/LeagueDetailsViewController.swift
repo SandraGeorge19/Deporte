@@ -23,7 +23,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var teamsCollectionView: UICollectionView!
     @IBOutlet weak var latestEventCollectionView: UICollectionView!
     @IBOutlet weak var upComingEventsTableView: UICollectionView!
-
+    
     
     //MARK: --Properties
     let myIndicator = UIActivityIndicatorView(style: .large)
@@ -31,7 +31,20 @@ class LeagueDetailsViewController: UIViewController {
     var upComingEvents:[Event] = []
     var latestEvents:[Event] = []
     var currentLeague: LeagueDB?
-    var isFavorite = false
+    var isFavorite = false {
+        didSet{
+            guard let currentLeague = currentLeague else {return}
+            if isFavorite{
+                print("the Favourite\(currentLeague.strLeague ?? "")")
+                CoreDataServices.saveContext()
+                favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            }else{
+                CoreDataServices.deleteLeague(delLeague: currentLeague)
+                favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+            
+        }
+    }
     
     var leagueDetailsPresenter:LeagueDetailsPresenter!
     
@@ -49,15 +62,6 @@ class LeagueDetailsViewController: UIViewController {
     //MARK: --IBActions
     @IBAction func onPressFavoriteBtn(_ sender: Any) {
         isFavorite = !isFavorite
-        guard let currentLeague = currentLeague else {return}
-        if isFavorite == true{
-            print("the Favourite\(currentLeague.strLeague ?? "")")
-            CoreDataServices.saveContext()
-            
-        }else{
-            CoreDataServices.deleteLeague(delLeague: currentLeague)
-        }
-        
     }
     
     //MARK: --Functions
@@ -93,7 +97,7 @@ class LeagueDetailsViewController: UIViewController {
         myIndicator.startAnimating()
     }
     
-
+    
     
     func updateCollectionView() {
         upComingEventsTableView.reloadData()
@@ -103,5 +107,5 @@ class LeagueDetailsViewController: UIViewController {
         myIndicator.stopAnimating()
     }
     
-
+    
 }
