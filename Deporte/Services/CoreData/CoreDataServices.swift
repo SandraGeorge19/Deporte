@@ -33,15 +33,15 @@ class CoreDataServices{
         }
     }
     
-    static func fetchLeagues() -> [LeagueDB]?{
+    static func fetchLeagues() -> [LeagueDB]{
         let request = NSFetchRequest<LeagueDB>(entityName: "LeagueDB")
+        var  result : [LeagueDB] = []
         do{
-            let result = try managedContext.fetch(request)
-            return result
+            result = try managedContext.fetch(request)
         }catch let error{
             print(error.localizedDescription)
-            return nil
         }
+        return result
     }
     
     static func deleteLeague(delLeague : LeagueDB){
