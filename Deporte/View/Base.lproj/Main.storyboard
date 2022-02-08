@@ -398,13 +398,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilV-Jn-Qci">
-                                                <rect key="frame" x="346" y="8.3333333333333321" width="44" height="44"/>
+                                                <rect key="frame" x="346" y="8" width="44" height="44.333333333333336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="Rbe-aX-tPv"/>
                                                     <constraint firstAttribute="height" constant="44.333333333333329" id="tnq-RP-H7F"/>
                                                 </constraints>
                                                 <color key="tintColor" red="0.21176470589999999" green="0.0" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" backgroundImage="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="onPressFavoriteBtn:" destination="BcD-g7-Zzr" eventType="touchUpInside" id="V9Q-iZ-yUJ"/>
                                                 </connections>
@@ -496,7 +495,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMg-hJ-E5k">
                                                     <rect key="frame" x="117" y="21" width="197" height="51"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -887,7 +886,6 @@
         <image name="facebook" width="512" height="512"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="instagram" width="512" height="512"/>
-        <image name="star" catalog="system" width="64" height="58"/>
         <image name="star.fill" catalog="system" width="64" height="58"/>
         <image name="twitter" width="512" height="512"/>
         <image name="world-wide-web" width="512" height="512"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class FavTableViewCell: UITableViewCell {
     
@@ -33,23 +34,45 @@ class FavTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setRoundedForImgCell(myImg : favCellImg)
+        viewCellUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        viewCellUI()
     }
     
     //MARK: -- IBActions
     
     @IBAction func didPressYoutubeBtn(_ sender: Any) {
-        
-        UIApplication.shared.open(URL(string: ("https://www.youtube.com/channel/UC3Guly6AbOr3PqrZMaV6vog"))!, options: [:], completionHandler: nil)
+        print("Hello from Favorite Screen specially Youtube Btn")
+        print(favCell?.strYoutube ?? "")
+        let youtubeURL = favCell?.strYoutube
+        DispatchQueue.main.async {
+            if youtubeURL != nil && youtubeURL != ""{
+                self.openApp()
+            }else{
+                self.makeToast("There is no Youtube Channel, Yet!")
+            }
+        }
     }
     
     //MARK: -- Functions
+    
+    func openApp() {
+
+        let appName = "youtube"
+        let appScheme = "\(appName)://app"
+        let appUrl = URL(string: appScheme)
+
+        if UIApplication.shared.canOpenURL(appUrl! as URL) {
+            UIApplication.shared.open(appUrl!)
+        } else {
+            UIApplication.shared.open(URL(string: ("https://\(self.favCell?.strYoutube ?? "")"))!, options: [:], completionHandler: nil)
+        }
+
+    }
     
     func setRoundedForImgCell(myImg : UIImageView){
         let saveCenter = myImg.center

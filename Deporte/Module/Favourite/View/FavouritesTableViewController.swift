@@ -9,13 +9,22 @@
 import UIKit
 import Alamofire
 
+protocol FavoriteLeaguesProtocol {
+    func updatingFavoriteTableView()
+    func navigateToLeagueDetails()
+}
+
 class FavouritesTableViewController: UITableViewController {
     
     //MARK: -- IBOutlets
     
     
     //MARK: -- Propertiest
-    var favLeagues : [LeagueDB] = []
+    let myIndicator = UIActivityIndicatorView(style: .large)
+    var favoritePresenter : FavoriteLeaguePresenter!
+    
+    //let refreshControl = UIRefreshControl()
+    
     //MARK: -- LifeCycle
     override func viewDidLoad() {
            super.viewDidLoad()
@@ -25,14 +34,25 @@ class FavouritesTableViewController: UITableViewController {
 
            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
            // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+            startIndicator()
        }
+    
     
     //MARK: -- IBActions
     
     //MARK: -- Functions
 
     
+    func startIndicator(){
+        myIndicator.center = self.view.center
+        self.view.addSubview(myIndicator)
+        myIndicator.startAnimating()
+    }
+    
+    func getDataFromCoreData(){
+        favoritePresenter.attachView(favLeagueViewController: self)
+        favoritePresenter.getFavoriteLeaguesFromCoreData()
+    }
    
 }
 
