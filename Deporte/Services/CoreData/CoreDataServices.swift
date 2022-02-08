@@ -80,7 +80,18 @@ class CoreDataServices{
         })
         return container
     }()
-
+    static func isLeagueExists(leagueID:String)->Bool{
+        let request = NSFetchRequest<LeagueDB>(entityName: "LeagueDB")
+        request.predicate = NSPredicate(format: "idLeague = %s", leagueID)
+        request.includesSubentities=false
+        var count : Int = 0
+        do{
+            count = try managedContext.count(for: request)
+        }catch{
+            print("Error In Is Exists")
+        }
+        return count > 0
+    }
     // MARK: - Core Data Saving support
 
     static func saveContext () {
