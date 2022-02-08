@@ -19,7 +19,8 @@ extension FavouritesTableViewController{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sports.count
+        print("numOfFavLeagues is \(favLeagues.count)")
+        return favLeagues.count
     }
 
     
@@ -27,7 +28,7 @@ extension FavouritesTableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FavTableViewCell
 
         // Configure the cell...
-        cell.sportItem = sports[indexPath.row]
+        cell.favCell = favLeagues[indexPath.row]
         
         //print(sports[indexPath.row].title ?? "")
         //print("HElOooooooooo")

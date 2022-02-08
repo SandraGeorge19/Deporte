@@ -19,7 +19,7 @@ class LeaguesPresenter{
     
     
     var leaguesApi : LeaguesAPIProtocol!
-    var myLeagues : [League] = []
+    var myLeagues : [LeagueDB] = []
     weak var leagueView : LeaguesTableViewController?
     
     init(leaguesApi : LeaguesAPIProtocol ,sportName : String ) {

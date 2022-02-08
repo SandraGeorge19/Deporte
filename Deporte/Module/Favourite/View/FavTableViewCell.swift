@@ -18,12 +18,12 @@ class FavTableViewCell: UITableViewCell {
     
     //MARK: -- Propertiest
     
-    var sportItem : Sport?{
+    var favCell : LeagueDB?{
         didSet{
-            guard let sportItem = sportItem else{return}
+            guard let favCell = favCell else{return}
             favCellImg.kf.indicatorType = .activity
-            favCellImg.kf.setImage(with: URL(string: sportItem.image ?? "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"))
-            favCellTitle.text = sportItem.title
+            favCellImg.kf.setImage(with: URL(string: favCell.strBadge ?? "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"))
+            favCellTitle.text = favCell.strLeague
         }
     }
     

@@ -18,7 +18,7 @@ class LeaguesTableViewCell: UITableViewCell {
     
     //MARK: -- Propertiest
     
-    var leagueCell : League?{
+    var leagueCell : LeagueDB?{
         didSet{
             guard let leagueCell = leagueCell else{return}
             leagueCellImg.kf.indicatorType = .activity
