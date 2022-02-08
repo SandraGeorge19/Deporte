@@ -20,7 +20,6 @@ class LeagueDetailsPresenter{
     }
     
     func requestData(leagueID:String, leagueName: String){
-        leagueDetailsViewController.isFavorite = CoreDataServices.isLeagueExists(leagueID: leagueID)
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         eventsApi.getEvents(leagueID:leagueID){(result) in

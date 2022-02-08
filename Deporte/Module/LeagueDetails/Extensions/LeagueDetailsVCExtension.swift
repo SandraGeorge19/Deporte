@@ -16,15 +16,15 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case upComingEventsTableView:
-            print(upComingEvents.count)
+            //print(upComingEvents.count)
             return upComingEvents.count
         
         case latestEventCollectionView:
-            print(latestEvents.count)
+            //print(latestEvents.count)
             return latestEvents.count
             
         case teamsCollectionView:
-            print(myTeams.count)
+            //print(myTeams.count)
             return myTeams.count
         default:
             return 0
@@ -44,8 +44,8 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             return cell
         case latestEventCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-            print("cellss \(myTeams.count)")
-            print("Events \(latestEvents.count)")
+//            print("cellss \(myTeams.count)")
+//            print("Events \(latestEvents.count)")
 
             cell.event=latestEvents[indexPath.row]
             cell.teams=myTeams

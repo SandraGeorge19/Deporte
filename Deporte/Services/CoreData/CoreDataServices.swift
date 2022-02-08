@@ -64,11 +64,13 @@ class CoreDataServices{
         newL.strYoutube = delLeague.strYoutube
         newL.strLeague = delLeague.strLeague
         newL.strDescriptionEN = delLeague.strDescriptionEN
+        print(newL.strLeague ?? "no leg")
         managedContext.delete(newL)
         do{
             try managedContext.save()
         }catch let error{
             print(error.localizedDescription)
+            print("nooooooo")
         }
     }
     func isLeagueExists(leagueID:String)->Bool{
