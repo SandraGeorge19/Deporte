@@ -16,15 +16,27 @@ extension CodingUserInfoKey{
 
 class CoreDataServices{
     
-    static let shared = CoreDataServices()
-    static let managedContext = shared.persistentContainer.viewContext
-    static let entity = NSEntityDescription.entity(forEntityName: "LeagueDB", in: managedContext)
+    let appDelegate : AppDelegate!
+    //let shared = CoreDataServices()
+    let managedContext : NSManagedObjectContext!
+    let entity : NSEntityDescription!
+       // = NSEntityDescription.entity(forEntityName: "LeagueDB", in: managedContext)
     
-    private init(){
-        
+    init(appDelegate : AppDelegate){
+        self.appDelegate = appDelegate
+        managedContext = appDelegate.persistentContainer.viewContext
+        entity = NSEntityDescription.entity(forEntityName: "LeagueDB", in: managedContext)
     }
     
-    static func saveLeague(myLeague : LeagueDB){
+    func saveLeague(myLeague : League){
+        //let entity = NSEntityDescription.entity(forEntityName: "LeagueDB", in: managedContext)
+        let savedLeage = NSManagedObject(entity: entity, insertInto: managedContext)
+        savedLeage.setValue(myLeague.idLeague , forKey: "idLeague")
+        savedLeage.setValue(myLeague.strLeague , forKey: "strLeague")
+        savedLeage.setValue(myLeague.strSport , forKey: "strSport")
+        savedLeage.setValue(myLeague.strBadge , forKey: "strBadge")
+        savedLeage.setValue(myLeague.strYoutube , forKey: "strYoutube")
+        savedLeage.setValue(myLeague.strDescriptionEN , forKey: "strDescriptionEN")
         do{
             print("SAVED")
             try managedContext.save()
@@ -33,7 +45,7 @@ class CoreDataServices{
         }
     }
     
-    static func fetchLeagues() -> [LeagueDB]{
+    func fetchLeagues() -> [LeagueDB]{
         let request = NSFetchRequest<LeagueDB>(entityName: "LeagueDB")
         var  result : [LeagueDB] = []
         do{
@@ -44,68 +56,28 @@ class CoreDataServices{
         return result
     }
     
-    static func deleteLeague(delLeague : LeagueDB){
-        managedContext.delete(delLeague)
+    func deleteLeague(delLeague : League){
+        let newL = LeagueDB(context: managedContext)
+        newL.idLeague = delLeague.idLeague
+        newL.strSport = delLeague.strSport
+        newL.strBadge = delLeague.strBadge
+        newL.strYoutube = delLeague.strYoutube
+        newL.strLeague = delLeague.strLeague
+        newL.strDescriptionEN = delLeague.strDescriptionEN
+        managedContext.delete(newL)
         do{
             try managedContext.save()
         }catch let error{
             print(error.localizedDescription)
         }
     }
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "Deporte")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    static func isLeagueExists(leagueID:String)->Bool{
-        let request = NSFetchRequest<LeagueDB>(entityName: "LeagueDB")
-        request.predicate = NSPredicate(format: "idLeague = %s", leagueID)
-        request.includesSubentities=false
-        var count : Int = 0
-        do{
-            count = try managedContext.count(for: request)
-        }catch{
-            print("Error In Is Exists")
-        }
-        return count > 0
-    }
-    // MARK: - Core Data Saving support
-
-    static func saveContext () {
-        //let context = persistentContainer.viewContext
-        if managedContext.hasChanges {
-            do {
-                try managedContext.save()
-                print("SAVVVVVEEEEDDDD")
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    func isLeagueExists(leagueID:String)->Bool{
+        let favLeagues = fetchLeagues()
+        for league in favLeagues{
+            if league.idLeague == leagueID{
+                return true
             }
         }
+        return false
     }
 }

@@ -38,7 +38,11 @@ extension FavouritesTableViewController{
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 108
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destLege = favoritePresenter.myFavorites[indexPath.row]
+        
+        navigateToLeagueDetails(destinationLeague: destLege)
+    }
 
     /*
     // Override to support conditional editing of the table view.

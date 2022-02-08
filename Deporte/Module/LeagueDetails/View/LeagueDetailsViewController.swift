@@ -30,7 +30,8 @@ class LeagueDetailsViewController: UIViewController {
     var myTeams : [Team] = []
     var upComingEvents:[Event] = []
     var latestEvents:[Event] = []
-    var currentLeague: LeagueDB?
+    var currentLeague: League?
+    var coreData : CoreDataServices?
     var isFavorite = false
     
     var leagueDetailsPresenter:LeagueDetailsPresenter!
@@ -38,9 +39,16 @@ class LeagueDetailsViewController: UIViewController {
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         configureViewControllersDelegations()
         
+        coreData = CoreDataServices(appDelegate: (UIApplication.shared.delegate) as! AppDelegate)
+        isFavorite = coreData?.isLeagueExists(leagueID: currentLeague?.idLeague ?? "") ?? false
+        if isFavorite{
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }else{
+            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
         initPresenter()
         requestData()
         startIndicator()
@@ -52,12 +60,13 @@ class LeagueDetailsViewController: UIViewController {
         guard let currentLeague = currentLeague else {return}
         if isFavorite == true{
             print("the Favourite\(currentLeague.strLeague ?? "")")
-            CoreDataServices.saveContext()
+            coreData?.saveLeague(myLeague: currentLeague)
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
             
         }else{
-            CoreDataServices.deleteLeague(delLeague: currentLeague)
+            coreData?.deleteLeague(delLeague: currentLeague)
+            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         }
-        
     }
     
     //MARK: --Functions

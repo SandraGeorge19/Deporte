@@ -11,17 +11,17 @@ import Alamofire
 
 protocol FavoriteLeaguesProtocol {
     func updatingFavoriteTableView()
-    func navigateToLeagueDetails()
+    func navigateToLeagueDetails(destinationLeague : LeagueDB)
 }
 
-class FavouritesTableViewController: UITableViewController {
+class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProtocol{
     
     //MARK: -- IBOutlets
     
     
     //MARK: -- Propertiest
     let myIndicator = UIActivityIndicatorView(style: .large)
-    var favoritePresenter : FavoriteLeaguePresenter!
+    var favoritePresenter = FavoriteLeaguePresenter()
     
     //let refreshControl = UIRefreshControl()
     
@@ -35,6 +35,7 @@ class FavouritesTableViewController: UITableViewController {
            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
            // self.navigationItem.rightBarButtonItem = self.editButtonItem
             startIndicator()
+        getDataFromCoreData()
        }
     
     
@@ -52,6 +53,26 @@ class FavouritesTableViewController: UITableViewController {
     func getDataFromCoreData(){
         favoritePresenter.attachView(favLeagueViewController: self)
         favoritePresenter.getFavoriteLeaguesFromCoreData()
+    }
+    
+    func updatingFavoriteTableView() {
+        self.tableView.reloadData()
+        myIndicator.stopAnimating()
+    }
+    
+    func navigateToLeagueDetails(destinationLeague: LeagueDB) {
+        let leagueDetVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
+        
+        let newLeague = League()
+        newLeague.idLeague = destinationLeague.idLeague
+        newLeague.strSport = destinationLeague.strSport
+        newLeague.strBadge = destinationLeague.strBadge
+        newLeague.strYoutube = destinationLeague.strYoutube
+        newLeague.strLeague = destinationLeague.strLeague
+        newLeague.strDescriptionEN = destinationLeague.strDescriptionEN
+        leagueDetVC.currentLeague = newLeague
+        
+        self.navigationController?.pushViewController(leagueDetVC, animated: true)
     }
    
 }
