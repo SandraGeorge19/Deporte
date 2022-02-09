@@ -14,7 +14,7 @@ import UIKit
 
 extension HomeSportsViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(homePresenter.mysports.count)
+        //print(homePresenter.mysports.count)
           return homePresenter.mysports.count
        }
        

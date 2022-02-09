@@ -15,7 +15,6 @@ extension HomeSportsViewController{
     func configureCollectionView(){
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
-        
     }
     
     func startIndicator(){
@@ -26,6 +25,7 @@ extension HomeSportsViewController{
     func initializeHomePresenterAndGetData(){
         homePresenter = HomePresenter(sportsApi: AllSportsAPI())
         homePresenter.attachView(homeView: self)
+        configureCollectionView()
         homePresenter.getAllSports()
     }
     
@@ -51,8 +51,8 @@ extension HomeSportsViewController{
         }else{
             internetMsgLbl.isHidden = false
             myCollectionView.isHidden = true
+            myIndicator.stopAnimating()
             alertWillPresent()
-            
         }
     }
     

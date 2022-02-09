@@ -34,7 +34,7 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
+        
         
         refreshControl.tintColor = UIColor(displayP3Red: 161/255, green: 70/255, blue: 242/255, alpha: 0.75)
         startIndicator()

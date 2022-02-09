@@ -37,6 +37,9 @@ extension FavouritesTableViewController{
     
     func navigateToLeagueDetails(destinationLeague: LeagueDB) {
         let leagueDetVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
+        
+        let presenter = LeagueDetailsPresenter(leagueDetailsViewController: leagueDetVC, teamsApi: TeamsAPI(), eventsApi: EventsAPIImpl())
+        leagueDetVC.leagueDetailsPresenter = presenter
         leagueDetVC.leagueDetailsPresenter.currentLeague = destinationLeague.convertToLeague()
         
         //for delegation
