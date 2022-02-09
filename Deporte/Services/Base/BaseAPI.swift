@@ -17,7 +17,8 @@ class BaseAPI<T : TargetType>{
         Alamofire.request(target.baseURL + target.path, method: method, parameters: params.0, encoding: params.1, headers: headers).responseJSON { (response) in
             guard let statusCode = response.response?.statusCode else{
                 //fail request and add custom error
-                completion(.failure(NSError()))
+                let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey : ErrorMessage.genericError])
+                completion(.failure(error))
                 return
             }
             
@@ -25,17 +26,20 @@ class BaseAPI<T : TargetType>{
                 //successfull request
                 guard let jsonResponse = response.data else {
                     //fail request and add custom error
-                    completion(.failure(NSError()))
+                    let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey : ErrorMessage.genericError])
+                    completion(.failure(error))
                     return
                 }
                 guard let responseObject = try? JSONDecoder().decode(M.self, from: jsonResponse) else{
                     //fail request and add custom error
-                   completion(.failure(NSError()))
+                   let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey : ErrorMessage.genericError])
+                   completion(.failure(error))
                    return
                 }
                 completion(.success(responseObject))
             }else{
-                completion(.failure(NSError()))
+                let error = NSError(domain: target.baseURL, code: statusCode, userInfo: [NSLocalizedDescriptionKey : ErrorMessage.genericError])
+                completion(.failure(error))
             }
         }
     }

@@ -9,5 +9,5 @@ target 'Deporte' do
   pod 'Kingfisher', '~> 5.0'
   pod 'Alamofire', '~> 4.9.1'
   pod 'Toast-Swift', '~> 5.0.1'
-
+  
 end

@@ -19,3 +19,7 @@ struct Constants {
     static let GET_EVENTS = "eventsseason.php?"
 
 }
+
+struct ErrorMessage {
+    static let genericError = "Something went wrong, Please try again!"
+}
