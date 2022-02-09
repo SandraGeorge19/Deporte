@@ -53,13 +53,14 @@ extension LeagueDetailsViewController{
     
     
     
-//    func updateCollectionView() {
-//        upComingEventsTableView.reloadData()
-//        latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
-//        latestEventCollectionView.reloadData()
-//        teamsCollectionView.reloadData()
-//        myIndicator.stopAnimating()
-//    }
+    func updateCollectionView() {
+        upComingEventsTableView.reloadData()
+        latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
+        latestEventCollectionView.reloadData()
+        teamsCollectionView.reloadData()
+        detailsRefreshControl.endRefreshing()
+        myIndicator.stopAnimating()
+    }
     
     func addingSwipe(){
         let swipeRight = UISwipeGestureRecognizer(target: self, action:
@@ -68,24 +69,26 @@ extension LeagueDetailsViewController{
         self.view.addGestureRecognizer(swipeRight)
         
     }
-    
-    @objc func updateCollectionView() {
-        self.upComingEventsTableView.reloadData()
-        self.latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
-        self.latestEventCollectionView.reloadData()
-        self.teamsCollectionView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.upComingEventsTableView.refreshControl?.endRefreshing()
-            self.latestEventCollectionView.refreshControl?.endRefreshing()
-            self.teamsCollectionView.refreshControl?.endRefreshing()
+    @objc func updateDataToScreen(){
+        guard let leagueId = leagueDetailsPresenter.currentLeague?.idLeague , let leagueName = leagueDetailsPresenter.currentLeague?.strLeague  else {
+            return
         }
-        myIndicator.stopAnimating()
+        leagueDetailsPresenter.requestData(leagueID: leagueId, leagueName: leagueName)
     }
+    
+//    @objc func updateCollectionView() {
+//        self.upComingEventsTableView.reloadData()
+//        self.latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
+//        self.latestEventCollectionView.reloadData()
+//        self.teamsCollectionView.reloadData()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            self.leagueDetailsScroll.refreshControl?.endRefreshing()
+//        }
+//        myIndicator.stopAnimating()
+//    }
     func refreshingLeagueDetailsScreen(){
-        detailsRefreshControl.addTarget(self, action: #selector(updateCollectionView), for: .valueChanged)
-        upComingEventsTableView.refreshControl = detailsRefreshControl
-        latestEventCollectionView.refreshControl = detailsRefreshControl
-        teamsCollectionView.refreshControl = detailsRefreshControl
+        detailsRefreshControl.addTarget(self, action: #selector(updateDataToScreen), for: .valueChanged)
+        leagueDetailsScroll.refreshControl = detailsRefreshControl
     }
     
     @objc func swipeFunc(gesture : UISwipeGestureRecognizer){

@@ -24,6 +24,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var latestEventCollectionView: UICollectionView!
     @IBOutlet weak var upComingEventsTableView: UICollectionView!
     
+    @IBOutlet weak var leagueDetailsScroll: UIScrollView!
     
     
     //MARK: --Properties

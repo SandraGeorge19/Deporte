@@ -476,6 +476,7 @@
                         <outlet property="favoriteButton" destination="ilV-Jn-Qci" id="cwz-pp-Ewz"/>
                         <outlet property="latestEventCollectionView" destination="9eb-Nn-tE6" id="QI2-Ke-1FK"/>
                         <outlet property="latesteEventCollectionHeight" destination="AB4-cu-VmJ" id="0zV-N2-XVV"/>
+                        <outlet property="leagueDetailsScroll" destination="Cd3-wl-HLS" id="fQt-2G-pDb"/>
                         <outlet property="teamsCollectionView" destination="Ubs-nd-ivm" id="kVV-dE-sT2"/>
                         <outlet property="upComingEventsTableView" destination="4a2-9s-2EO" id="rK2-lh-08X"/>
                     </connections>
