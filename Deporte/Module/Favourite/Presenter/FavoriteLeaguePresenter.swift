@@ -12,7 +12,7 @@ import UIKit
 class FavoriteLeaguePresenter{
     
     //MARK: -- Properties
-    weak var favLeagueViewController : FavouritesTableViewController?
+    var favLeaguesView : FavoriteLeaguesProtocol!
     var coreDateObj : CoreDataServices?
     
     var myFavorites : [LeagueDB] = []
@@ -23,14 +23,14 @@ class FavoriteLeaguePresenter{
         coreDateObj = CoreDataServices(appDelegate: (UIApplication.shared.delegate) as! AppDelegate)
     }
     
-    func attachView(favLeagueViewController : FavouritesTableViewController){
-        self.favLeagueViewController = favLeagueViewController
+    func attachView(favLeaguesView : FavoriteLeaguesProtocol){
+        self.favLeaguesView = favLeaguesView
     }
     
     
     func getFavoriteLeaguesFromCoreData(){
         myFavorites = (coreDateObj?.fetchLeagues())!
         print("favourite leagues count is :\(myFavorites.count)")
-        self.favLeagueViewController?.updatingFavoriteTableView()
+        self.favLeaguesView?.updatingFavoriteTableView()
     }
 }

@@ -30,7 +30,7 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
            super.viewDidLoad()
 
             startIndicator()
-        favoritePresenter.attachView(favLeagueViewController: self)
+        favoritePresenter.attachView(favLeaguesView: self)
         //getDataFromCoreData()
        }
     override func viewWillAppear(_ animated: Bool) {

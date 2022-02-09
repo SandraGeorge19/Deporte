@@ -23,6 +23,7 @@ extension LeaguesTableViewController{
         print(leaguesPresenter.myLeagues.count)
         return leaguesPresenter.myLeagues.count
     }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeaguesTableViewCell
@@ -31,6 +32,7 @@ extension LeaguesTableViewController{
         return cell
     }
     
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("HEllo from cell Leages")
         let leage = leaguesPresenter.myLeagues[indexPath.row]
