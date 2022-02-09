@@ -25,16 +25,20 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol{
     let myIndicator = UIActivityIndicatorView(style: .large)
     var leaguesPresenter : LeaguesPresenter!
     
-    
+    let leagueRefreshControl = UIRefreshControl()
     
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Leagues"
+        navigationItem.title = leaguesPresenter.sportName
+        
+        leagueRefreshControl.tintColor = UIColor(displayP3Red: 161/255, green: 70/255, blue: 242/255, alpha: 0.75)
+        
         startIndicator()
         
         initializeLeaguesPresenterAndGetData()
+        refreshingLeaguesScreen()
     }
     
     override func viewWillLayoutSubviews() {
@@ -43,24 +47,6 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol{
     }
     
     //MARK: -- IBActions
-    
-    //MARK: -- Functions
-
-    func startIndicator(){
-        myIndicator.center = self.view.center
-        self.view.addSubview(myIndicator)
-        myIndicator.startAnimating()
-    }
-    
-    func initializeLeaguesPresenterAndGetData(){
-        leaguesPresenter.attachView(leagueView: self)
-        leaguesPresenter.getLeaguesToTableView()
-    }
-    
-    func updatingLeaguesTableView() {
-        self.tableView.reloadData()
-        myIndicator.stopAnimating()
-    }
     
     
 }

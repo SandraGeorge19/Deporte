@@ -33,23 +33,22 @@ class LeagueDetailsViewController: UIViewController {
     //var favDel : favPro?
     var leagueDetailsPresenter:LeagueDetailsPresenter!
     
+    let detailsRefreshControl = UIRefreshControl()
     
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewControllersDelegations()
         
+        detailsRefreshControl.tintColor = UIColor(displayP3Red: 161/255, green: 70/255, blue: 242/255, alpha: 0.75)
+        
         addingSwipe()
         
-        isFavorite = leagueDetailsPresenter.coreData?.isLeagueExists(leagueID: leagueDetailsPresenter.currentLeague?.idLeague ?? "") ?? false
-        if isFavorite{
-            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        }else{
-            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-        }
+        checkingIsFavorite()
         
         requestData()
         startIndicator()
+        refreshingLeagueDetailsScreen()
     }
     
     //MARK: --IBActions

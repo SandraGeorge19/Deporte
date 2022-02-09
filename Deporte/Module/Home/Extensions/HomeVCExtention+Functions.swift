@@ -31,8 +31,10 @@ extension HomeSportsViewController{
     
     @objc func updatingCollectionView() {
         self.myCollectionView.reloadData()
-        self.myCollectionView.refreshControl?.endRefreshing()
-        myIndicator.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.myCollectionView.refreshControl?.endRefreshing()
+        }
+        self.myIndicator.stopAnimating()
     }
     
     func alertWillPresent(){

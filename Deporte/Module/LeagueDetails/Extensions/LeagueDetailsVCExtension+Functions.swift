@@ -14,6 +14,15 @@ extension LeagueDetailsViewController{
     
     //MARK: --Functions
     
+    func checkingIsFavorite(){
+        isFavorite = leagueDetailsPresenter.coreData?.isLeagueExists(leagueID : leagueDetailsPresenter.currentLeague?.idLeague ?? "") ?? false
+        if isFavorite{
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }else{
+            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+    }
+    
     func configureViewControllersDelegations(){
         
         teamsCollectionView.dataSource=self
@@ -44,13 +53,13 @@ extension LeagueDetailsViewController{
     
     
     
-    func updateCollectionView() {
-        upComingEventsTableView.reloadData()
-        latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
-        latestEventCollectionView.reloadData()
-        teamsCollectionView.reloadData()
-        myIndicator.stopAnimating()
-    }
+//    func updateCollectionView() {
+//        upComingEventsTableView.reloadData()
+//        latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
+//        latestEventCollectionView.reloadData()
+//        teamsCollectionView.reloadData()
+//        myIndicator.stopAnimating()
+//    }
     
     func addingSwipe(){
         let swipeRight = UISwipeGestureRecognizer(target: self, action:
@@ -58,6 +67,25 @@ extension LeagueDetailsViewController{
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
         
+    }
+    
+    @objc func updateCollectionView() {
+        self.upComingEventsTableView.reloadData()
+        self.latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
+        self.latestEventCollectionView.reloadData()
+        self.teamsCollectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.upComingEventsTableView.refreshControl?.endRefreshing()
+            self.latestEventCollectionView.refreshControl?.endRefreshing()
+            self.teamsCollectionView.refreshControl?.endRefreshing()
+        }
+        myIndicator.stopAnimating()
+    }
+    func refreshingLeagueDetailsScreen(){
+        detailsRefreshControl.addTarget(self, action: #selector(updateCollectionView), for: .valueChanged)
+        upComingEventsTableView.refreshControl = detailsRefreshControl
+        latestEventCollectionView.refreshControl = detailsRefreshControl
+        teamsCollectionView.refreshControl = detailsRefreshControl
     }
     
     @objc func swipeFunc(gesture : UISwipeGestureRecognizer){

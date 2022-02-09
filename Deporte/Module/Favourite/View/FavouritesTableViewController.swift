@@ -23,15 +23,18 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
     let myIndicator = UIActivityIndicatorView(style: .large)
     var favoritePresenter = FavoriteLeaguePresenter()
     
-    //let refreshControl = UIRefreshControl()
+    //for refreshing the data that comes from api
+    let favRefreshControl = UIRefreshControl()
     
     //MARK: -- LifeCycle
     override func viewDidLoad() {
            super.viewDidLoad()
 
+        favRefreshControl.tintColor = UIColor(displayP3Red: 161/255, green: 70/255, blue: 242/255, alpha: 0.75)
+        
             startIndicator()
         favoritePresenter.attachView(favLeaguesView: self)
-        //getDataFromCoreData()
+        refreshingFavoriteScreen()
        }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,32 +42,6 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
     }
     //MARK: -- IBActions
     
-    //MARK: -- Functions
     
-    func startIndicator(){
-        myIndicator.center = self.view.center
-        self.view.addSubview(myIndicator)
-        myIndicator.startAnimating()
-    }
-    
-    func getDataFromCoreData(){
-        favoritePresenter.getFavoriteLeaguesFromCoreData()
-    }
-    
-    func updatingFavoriteTableView() {
-        self.tableView.reloadData()
-        myIndicator.stopAnimating()
-    }
-    
-    func navigateToLeagueDetails(destinationLeague: LeagueDB) {
-        let leagueDetVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
-        leagueDetVC.leagueDetailsPresenter.currentLeague = destinationLeague.convertToLeague()
-        
-        //for delegation
-        //leagueDetVc.fav = self
-        
-        self.present(leagueDetVC, animated: true, completion: nil)
-    }
-   
 }
 
