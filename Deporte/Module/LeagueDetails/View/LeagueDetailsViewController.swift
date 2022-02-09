@@ -28,11 +28,7 @@ class LeagueDetailsViewController: UIViewController {
     
     //MARK: --Properties
     let myIndicator = UIActivityIndicatorView(style: .large)
-    var myTeams : [Team] = []
-    var upComingEvents:[Event] = []
-    var latestEvents:[Event] = []
-    var currentLeague: League?
-    var coreData : CoreDataServices?
+    
     var isFavorite = false
     //var favDel : favPro?
     var leagueDetailsPresenter:LeagueDetailsPresenter!
@@ -41,20 +37,17 @@ class LeagueDetailsViewController: UIViewController {
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         configureViewControllersDelegations()
-        
         
         addingSwipe()
         
-        coreData = CoreDataServices(appDelegate: (UIApplication.shared.delegate) as! AppDelegate)
-        isFavorite = coreData?.isLeagueExists(leagueID: currentLeague?.idLeague ?? "") ?? false
+        isFavorite = leagueDetailsPresenter.coreData?.isLeagueExists(leagueID: leagueDetailsPresenter.currentLeague?.idLeague ?? "") ?? false
         if isFavorite{
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         }else{
             favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         }
-        initPresenter()
+        
         requestData()
         startIndicator()
     }
@@ -62,71 +55,17 @@ class LeagueDetailsViewController: UIViewController {
     //MARK: --IBActions
     @IBAction func onPressFavoriteBtn(_ sender: Any) {
         isFavorite = !isFavorite
-        guard let currentLeague = currentLeague else {return}
+        guard let currentLeague = leagueDetailsPresenter.currentLeague else {return}
         if isFavorite == true{
             print("the Favourite\(currentLeague.strLeague ?? "")")
-            coreData?.saveLeague(myLeague: currentLeague)
+            leagueDetailsPresenter.coreData?.saveLeague(myLeague: currentLeague)
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         }else{
-            coreData?.deleteLeague(delLeague: currentLeague)
+            leagueDetailsPresenter.coreData?.deleteLeague(delLeague: currentLeague)
             favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         }
     }
     
-    //MARK: --Functions
-    
-    func configureViewControllersDelegations(){
-        teamsCollectionView.dataSource=self
-        teamsCollectionView.delegate=self
-        latestEventCollectionView.dataSource=self
-        latestEventCollectionView.delegate=self
-        upComingEventsTableView.delegate=self
-        upComingEventsTableView.dataSource=self
-        let myCell1 = UINib(nibName: "UpComingEventCollectionViewCell", bundle: nil)
-        upComingEventsTableView.register(myCell1, forCellWithReuseIdentifier: "UpComingEventCollectionViewCell")
-        let myCell2 = UINib(nibName: "LatestEventCollectionViewCell", bundle: nil)
-        latestEventCollectionView.register(myCell2, forCellWithReuseIdentifier: "LatestEventCollectionViewCell")
-        let myCell3 = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
-        teamsCollectionView.register(myCell3, forCellWithReuseIdentifier: "TeamCollectionViewCell")
-        latesteEventCollectionHeight.constant = (98 + 16) * 5
-        // Do any additional setup after loading the view.
-    }
-    func initPresenter(){
-        leagueDetailsPresenter = LeagueDetailsPresenter(leagueDetailsViewController: self,
-                                                        teamsApi: TeamsAPI(),
-                                                        eventsApi: EventsAPIImpl())
-    }
-    func requestData(){
-        leagueDetailsPresenter.requestData(leagueID: currentLeague?.idLeague ?? "", leagueName:currentLeague?.strLeague ?? "")
-    }
-    
-    func startIndicator(){
-        myIndicator.center = self.view.center
-        self.view.addSubview(myIndicator)
-        myIndicator.startAnimating()
-    }
-    
-    
-    
-    func updateCollectionView() {
-        upComingEventsTableView.reloadData()
-        latesteEventCollectionHeight.constant = CGFloat((98) * latestEvents.count)
-        latestEventCollectionView.reloadData()
-        teamsCollectionView.reloadData()
-        myIndicator.stopAnimating()
-    }
-    
-    func addingSwipe(){
-        let swipeRight = UISwipeGestureRecognizer(target: self, action:
-             #selector(swipeFunc(gesture:)))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
-        
-    }
-    
-    @objc func swipeFunc(gesture : UISwipeGestureRecognizer){
-        dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func didPressBack(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

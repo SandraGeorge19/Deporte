@@ -16,16 +16,13 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case upComingEventsTableView:
-            //print(upComingEvents.count)
-            return upComingEvents.count
+            return leagueDetailsPresenter.upComingEvents.count
         
         case latestEventCollectionView:
-            //print(latestEvents.count)
-            return latestEvents.count
+            return leagueDetailsPresenter.latestEvents.count
             
         case teamsCollectionView:
-            //print(myTeams.count)
-            return myTeams.count
+            return leagueDetailsPresenter.myTeams.count
         default:
             return 0
         }
@@ -38,28 +35,26 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
         switch collectionView {
         case upComingEventsTableView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventCollectionViewCell", for: indexPath) as? UpComingEventCollectionViewCell else { return UICollectionViewCell() }
-                cell.event=upComingEvents[indexPath.row]
-              cell.teams=myTeams
+                cell.event = leagueDetailsPresenter.upComingEvents[indexPath.row]
+              cell.teams = leagueDetailsPresenter.myTeams
               cell.setUpView()
             return cell
         case latestEventCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-//            print("cellss \(myTeams.count)")
-//            print("Events \(latestEvents.count)")
 
-            cell.event=latestEvents[indexPath.row]
-            cell.teams=myTeams
+            cell.event = leagueDetailsPresenter.latestEvents[indexPath.row]
+            cell.teams = leagueDetailsPresenter.myTeams
             cell.setUpView()
             return cell
         case teamsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as? TeamCollectionViewCell else { return UICollectionViewCell() }
-            cell.teamsCell = myTeams[indexPath.row]
+            cell.teamsCell = leagueDetailsPresenter.myTeams[indexPath.row]
             
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventCollectionViewCell", for: indexPath) as? LatestEventCollectionViewCell else { return UICollectionViewCell() }
-            cell.event=latestEvents[indexPath.row]
-            cell.teams=myTeams
+            cell.event = leagueDetailsPresenter.latestEvents[indexPath.row]
+            cell.teams = leagueDetailsPresenter.myTeams
             return cell
         }
     }
@@ -96,7 +91,7 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
         case latestEventCollectionView:
             break
         case teamsCollectionView:
-                let team = myTeams[indexPath.row]
+                let team = leagueDetailsPresenter.myTeams[indexPath.row]
                 let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
                 let teamPresent = TeamPresenter(myTeam: team)
                 teamDetailsVC.teamPresenter = teamPresent

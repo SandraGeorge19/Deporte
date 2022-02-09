@@ -58,7 +58,7 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
     
     func navigateToLeagueDetails(destinationLeague: LeagueDB) {
         let leagueDetVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
-        leagueDetVC.currentLeague = destinationLeague.convertToLeague()
+        leagueDetVC.leagueDetailsPresenter.currentLeague = destinationLeague.convertToLeague()
         
         //for delegation
         //leagueDetVc.fav = self
