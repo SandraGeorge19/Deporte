@@ -29,20 +29,17 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
     override func viewDidLoad() {
            super.viewDidLoad()
 
-           // Uncomment the following line to preserve selection between presentations
-           // self.clearsSelectionOnViewWillAppear = false
-
-           // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-           // self.navigationItem.rightBarButtonItem = self.editButtonItem
             startIndicator()
-        getDataFromCoreData()
+        favoritePresenter.attachView(favLeagueViewController: self)
+        //getDataFromCoreData()
        }
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getDataFromCoreData()
+    }
     //MARK: -- IBActions
     
     //MARK: -- Functions
-
     
     func startIndicator(){
         myIndicator.center = self.view.center
@@ -51,7 +48,6 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
     }
     
     func getDataFromCoreData(){
-        favoritePresenter.attachView(favLeagueViewController: self)
         favoritePresenter.getFavoriteLeaguesFromCoreData()
     }
     
@@ -62,17 +58,12 @@ class FavouritesTableViewController: UITableViewController , FavoriteLeaguesProt
     
     func navigateToLeagueDetails(destinationLeague: LeagueDB) {
         let leagueDetVC = self.storyboard?.instantiateViewController(withIdentifier: "LatestEvent2ViewController") as! LeagueDetailsViewController
+        leagueDetVC.currentLeague = destinationLeague.convertToLeague()
         
-        let newLeague = League()
-        newLeague.idLeague = destinationLeague.idLeague
-        newLeague.strSport = destinationLeague.strSport
-        newLeague.strBadge = destinationLeague.strBadge
-        newLeague.strYoutube = destinationLeague.strYoutube
-        newLeague.strLeague = destinationLeague.strLeague
-        newLeague.strDescriptionEN = destinationLeague.strDescriptionEN
-        leagueDetVC.currentLeague = newLeague
+        //for delegation
+        //leagueDetVc.fav = self
         
-        self.navigationController?.pushViewController(leagueDetVC, animated: true)
+        self.present(leagueDetVC, animated: true, completion: nil)
     }
    
 }

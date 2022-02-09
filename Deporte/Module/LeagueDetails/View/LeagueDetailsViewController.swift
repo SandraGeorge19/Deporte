@@ -25,6 +25,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var upComingEventsTableView: UICollectionView!
     
     
+    
     //MARK: --Properties
     let myIndicator = UIActivityIndicatorView(style: .large)
     var myTeams : [Team] = []
@@ -33,14 +34,18 @@ class LeagueDetailsViewController: UIViewController {
     var currentLeague: League?
     var coreData : CoreDataServices?
     var isFavorite = false
-    
+    //var favDel : favPro?
     var leagueDetailsPresenter:LeagueDetailsPresenter!
+    
     
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         //favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
         configureViewControllersDelegations()
+        
+        
+        addingSwipe()
         
         coreData = CoreDataServices(appDelegate: (UIApplication.shared.delegate) as! AppDelegate)
         isFavorite = coreData?.isLeagueExists(leagueID: currentLeague?.idLeague ?? "") ?? false
@@ -62,7 +67,6 @@ class LeagueDetailsViewController: UIViewController {
             print("the Favourite\(currentLeague.strLeague ?? "")")
             coreData?.saveLeague(myLeague: currentLeague)
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            
         }else{
             coreData?.deleteLeague(delLeague: currentLeague)
             favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
@@ -112,5 +116,20 @@ class LeagueDetailsViewController: UIViewController {
         myIndicator.stopAnimating()
     }
     
+    func addingSwipe(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action:
+             #selector(swipeFunc(gesture:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    @objc func swipeFunc(gesture : UISwipeGestureRecognizer){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didPressBack(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }

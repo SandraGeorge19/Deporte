@@ -26,6 +26,7 @@ class UpComingEventCollectionViewCell: UICollectionViewCell {
     func setUpView(){
         awayTeamLabel.text = event?.strAwayTeam ?? ""
         homeTeamLabel.text = event?.strHomeTeam ?? ""
+        leagueNameLabel.text = event?.strLeague ?? ""
         roundLabel.text = "Week \(event?.intRound ?? "")"
         timeLabel.text = "\(event?.strTime?.prefix(5) ?? "")"
         dateLabel.text = event?.dateEvent?.getDateDayAsNumberAndMonthAsString()

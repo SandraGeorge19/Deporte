@@ -29,9 +29,6 @@ extension FavouritesTableViewController{
 
         // Configure the cell...
         cell.favCell = favoritePresenter.myFavorites[indexPath.row]
-        
-        //print(sports[indexPath.row].title ?? "")
-        //print("HElOooooooooo")
 
         return cell
     }
@@ -57,7 +54,16 @@ extension FavouritesTableViewController{
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let alert = UIAlertController(title: "Delete This League?", message: "Are you sure you want to delete this league?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+                self.favoritePresenter.coreDateObj?.deleteLeague(delLeague: self.favoritePresenter.myFavorites[indexPath.row])
+                self.favoritePresenter.myFavorites.remove(at: indexPath.row)
+             
+                tableView.reloadData()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }

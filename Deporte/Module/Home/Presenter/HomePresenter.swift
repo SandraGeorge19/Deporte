@@ -17,10 +17,6 @@ class HomePresenter{
     var mysports : [MySport] = []
     weak var homeView : HomeProtocol!
     
-//    init(networkService : NetworkServices){
-//        self.networkService = networkService
-//    }
-    
     init(sportsApi : AllSportsAPIProtocol){
         self.sportsApi = sportsApi
     }
@@ -37,30 +33,10 @@ class HomePresenter{
                     self.mysports = response?.sports ?? []
                     self.homeView.updatingCollectionView()
                 case .failure(let error):
-                    //print(error.localizedDescription)
+                    print(error.localizedDescription)
                     self.homeView.alertWillPresent()
                 }
             }
-        }
-        
-//        networkService.fetchAllSportsData { (result) in
-//            DispatchQueue.main.async {
-//                switch result{
-//                case .success(let sport):
-//                    DispatchQueue.main.async {
-//                        self.mysports = sport?.sports ?? []
-//                        self.homeView.updatingCollectionView()
-//                    }
-//                case .failure(_):
-//                    print("ERROR")
-//                }
-//
-//            }
-//        }
-        
-        func selectRow(index : Int){
-            let sport = mysports[index]
-            
         }
     }
 }

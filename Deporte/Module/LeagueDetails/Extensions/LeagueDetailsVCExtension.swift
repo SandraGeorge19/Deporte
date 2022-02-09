@@ -72,11 +72,11 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
     ) -> CGSize {
         switch collectionView {
         case upComingEventsTableView:
-            return CGSize(width: 384, height: 244)
+            return CGSize(width: 384, height: 230)
         case latestEventCollectionView:
             return CGSize(width: 382, height: 98)
         case teamsCollectionView:
-            return CGSize(width: 150, height: 190)
+            return CGSize(width: 145, height: 180)
         default:
             return CGSize(width: 150, height: 190)
             

@@ -56,16 +56,10 @@ class CoreDataServices{
         return result
     }
     
-    func deleteLeague(delLeague : League){
-        let newL = LeagueDB(context: managedContext)
-        newL.idLeague = delLeague.idLeague
-        newL.strSport = delLeague.strSport
-        newL.strBadge = delLeague.strBadge
-        newL.strYoutube = delLeague.strYoutube
-        newL.strLeague = delLeague.strLeague
-        newL.strDescriptionEN = delLeague.strDescriptionEN
-        print(newL.strLeague ?? "no leg")
-        managedContext.delete(newL)
+    func deleteLeague(delLeague : LeagueDB){
+        
+        print(delLeague.strLeague ?? "no leg")
+        managedContext.delete(delLeague)
         do{
             try managedContext.save()
         }catch let error{
@@ -73,6 +67,26 @@ class CoreDataServices{
             print("nooooooo")
         }
     }
+    
+    func deleteLeague(delLeague : League){
+        var tempLeague : LeagueDB?
+        
+        let favLeagues = fetchLeagues()
+        
+            for league in favLeagues{
+                
+                if league.idLeague == delLeague.idLeague{
+                    tempLeague = league
+                }
+            }
+        guard let temp = tempLeague else {
+            return
+        }
+        deleteLeague(delLeague: temp)
+            
+    }
+    
+    
     func isLeagueExists(leagueID:String)->Bool{
         let favLeagues = fetchLeagues()
         for league in favLeagues{
