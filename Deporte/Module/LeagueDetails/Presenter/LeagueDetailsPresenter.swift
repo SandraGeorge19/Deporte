@@ -42,9 +42,6 @@ class LeagueDetailsPresenter{
             switch result{
             case .success(let response):
                 print("Sucess upcom")
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-                dateFormatter.dateFormat = "yyyy-MM-dd"
                 self.upComingEvents = (response?.events.filter{ (event) in
                     event.dateEvent?.getDateFromString(dateFormatter: DateFormatter.getDateFormatterYYYY_MM_DD()).hasNotStarted() ?? false
                     } ?? [])

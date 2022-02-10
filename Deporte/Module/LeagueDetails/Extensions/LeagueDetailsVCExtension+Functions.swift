@@ -54,12 +54,33 @@ extension LeagueDetailsViewController{
     
     
     func updateCollectionView() {
+        if leagueDetailsPresenter.upComingEvents.count == 0{
+            let imageView : UIImageView = {
+                let iv = UIImageView()
+                iv.image = UIImage(named:"noData.png")
+                iv.contentMode = .scaleAspectFill
+                return iv
+            }()
+            upComingEventsTableView.backgroundView=imageView
+        }
+
+        
         upComingEventsTableView.reloadData()
-        latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
+        latesteEventCollectionHeight.constant = CGFloat(((108) * leagueDetailsPresenter.latestEvents.count)+16)
         latestEventCollectionView.reloadData()
         teamsCollectionView.reloadData()
         detailsRefreshControl.endRefreshing()
         myIndicator.stopAnimating()
+        if leagueDetailsPresenter.latestEvents.count == 0{
+            let imageView : UIImageView = {
+                let iv = UIImageView()
+                iv.image = UIImage(named:"noData.png")
+                iv.contentMode = .scaleAspectFill
+                return iv
+            }()
+            latesteEventCollectionHeight.constant=230
+            latestEventCollectionView.backgroundView=imageView
+        }
     }
     
     func addingSwipe(){
