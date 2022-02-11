@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Date {
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
@@ -81,4 +82,66 @@ extension Int{
                 return ""
             }
        }
+}
+
+extension UICollectionView {
+    
+    func setBackgroundWithUIImageView(_ image:UIImageView){
+        self.backgroundView=image
+    }
+    
+    func setBackgroundNoData(){
+        let noDataImageView : UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named:"noData.png")
+            iv.contentMode = .scaleAspectFill
+            return iv
+        }()
+        self.setBackgroundWithUIImageView(noDataImageView)
+    }
+    
+    func setBackgroundNoNetwork(){
+        let noConnectionImageView : UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named:"noConnection.png")
+            iv.contentMode = .scaleAspectFit
+            return iv
+        }()
+        self.setBackgroundWithUIImageView(noConnectionImageView)
+    }
+    
+}
+
+
+
+extension UIViewController{
+    func alertNoNetworkPresent(){
+        let alert = UIAlertController(title: "Network Error!!", message: "The device isn't connected to network, please re-check the internet connectivity", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func setBackgroundWithUIImageView(_ image:UIImageView){
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "noConnection.png")!)        //self.view.sendSubviewToBack(image)
+    }
+    
+    func setBackgroundNoData(){
+        let noDataImageView : UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named:"noData.png")
+            iv.contentMode = .scaleAspectFill
+            return iv
+        }()
+        self.setBackgroundWithUIImageView(noDataImageView)
+    }
+    
+    func setBackgroundNoNetwork(){
+        let noConnectionImageView : UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named:"noConnection.png")
+            iv.contentMode = .scaleAspectFit
+            return iv
+        }()
+        self.setBackgroundWithUIImageView(noConnectionImageView)
+    }
+    
 }

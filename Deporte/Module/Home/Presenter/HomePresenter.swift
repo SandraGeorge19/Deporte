@@ -34,7 +34,6 @@ class HomePresenter{
                     self.homeView.updatingCollectionView()
                 case .failure(let error):
                     print(error.localizedDescription)
-                    self.homeView.alertWillPresent()
                 }
             }
         }

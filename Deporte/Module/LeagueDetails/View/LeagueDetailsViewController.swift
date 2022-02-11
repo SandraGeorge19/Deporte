@@ -24,9 +24,13 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var latestEventCollectionView: UICollectionView!
     @IBOutlet weak var upComingEventsTableView: UICollectionView!
     
+    @IBOutlet weak var imageViewProblem: UIImageView!
     @IBOutlet weak var leagueDetailsScroll: UIScrollView!
+    @IBOutlet weak var label1: UILabel!
     
+    @IBOutlet weak var label3: UILabel!
     
+    @IBOutlet weak var label2: UILabel!
     //MARK: --Properties
     let myIndicator = UIActivityIndicatorView(style: .large)
     

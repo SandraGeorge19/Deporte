@@ -41,8 +41,12 @@ extension LeagueDetailsViewController{
         // Do any additional setup after loading the view.
     }
     
-    func requestData(){
-        leagueDetailsPresenter.requestData(leagueID: leagueDetailsPresenter.currentLeague?.idLeague ?? "", leagueName: leagueDetailsPresenter.currentLeague?.strLeague ?? "")
+    @objc func requestData(){
+        if NetworkMonitor.shared.isConnected{
+            leagueDetailsPresenter.requestData(leagueID: leagueDetailsPresenter.currentLeague?.idLeague ?? "", leagueName: leagueDetailsPresenter.currentLeague?.strLeague ?? "")
+        }else{
+            noConnection()
+        }
     }
     
     func startIndicator(){
@@ -63,9 +67,13 @@ extension LeagueDetailsViewController{
             }()
             upComingEventsTableView.backgroundView=imageView
         }
-
+        
+        setViewVisible()
+        
+        imageViewProblem.isHidden = true
         
         upComingEventsTableView.reloadData()
+        
         latesteEventCollectionHeight.constant = CGFloat(((108) * leagueDetailsPresenter.latestEvents.count)+16)
         latestEventCollectionView.reloadData()
         teamsCollectionView.reloadData()
@@ -85,7 +93,7 @@ extension LeagueDetailsViewController{
     
     func addingSwipe(){
         let swipeRight = UISwipeGestureRecognizer(target: self, action:
-             #selector(swipeFunc(gesture:)))
+            #selector(swipeFunc(gesture:)))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
         
@@ -96,22 +104,50 @@ extension LeagueDetailsViewController{
         }
         leagueDetailsPresenter.requestData(leagueID: leagueId, leagueName: leagueName)
     }
-    
-//    @objc func updateCollectionView() {
-//        self.upComingEventsTableView.reloadData()
-//        self.latesteEventCollectionHeight.constant = CGFloat((98) * leagueDetailsPresenter.latestEvents.count)
-//        self.latestEventCollectionView.reloadData()
-//        self.teamsCollectionView.reloadData()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.leagueDetailsScroll.refreshControl?.endRefreshing()
+//    @objc func requestData(){
+//        if NetworkMonitor.shared.isConnected{
+//            homePresenter.getAllSports()
+//        }else{
+//            noConnection()
 //        }
-//        myIndicator.stopAnimating()
 //    }
-    func refreshingLeagueDetailsScreen(){
-        detailsRefreshControl.addTarget(self, action: #selector(updateDataToScreen), for: .valueChanged)
-        leagueDetailsScroll.refreshControl = detailsRefreshControl
+    func noConnection(){
+        if (leagueDetailsPresenter.upComingEvents.count + leagueDetailsPresenter.myTeams.count + leagueDetailsPresenter.latestEvents.count) < 1 {
+            setViewHidden()
+            imageViewProblem.isHidden=false
+        }
+        DispatchQueue.main.async {
+            self.alertNoNetworkPresent()
+            self.myIndicator.stopAnimating()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.detailsRefreshControl.endRefreshing()
+        }
+        
     }
     
+    func refreshingLeagueDetailsScreen(){
+        detailsRefreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
+        leagueDetailsScroll.refreshControl = detailsRefreshControl
+    }
+    func setViewHidden(){
+        favoriteButton.isHidden=true
+        teamsCollectionView.isHidden=true
+        latestEventCollectionView.isHidden=true
+        upComingEventsTableView.isHidden=true
+        label1.isHidden=true
+        label2.isHidden=true
+        label3.isHidden=true
+    }
+    func setViewVisible(){
+        favoriteButton.isHidden=false
+        teamsCollectionView.isHidden=false
+        latestEventCollectionView.isHidden=false
+        upComingEventsTableView.isHidden=false
+        label1.isHidden=false
+        label2.isHidden=false
+        label3.isHidden=false
+    }
     @objc func swipeFunc(gesture : UISwipeGestureRecognizer){
         dismiss(animated: true, completion: nil)
     }

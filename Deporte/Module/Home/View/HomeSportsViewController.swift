@@ -12,7 +12,6 @@ import Alamofire
 
 protocol HomeProtocol : AnyObject{
     func updatingCollectionView()
-    func alertWillPresent()
 }
 
 class HomeSportsViewController: UIViewController ,HomeProtocol{
@@ -35,13 +34,13 @@ class HomeSportsViewController: UIViewController ,HomeProtocol{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        configureCollectionView()
+        initializeHomePresenter()
         refreshControl.tintColor = UIColor(displayP3Red: 161/255, green: 70/255, blue: 242/255, alpha: 0.75)
         startIndicator()
-        
-        checkConnectivity()
-        
         refreshingHomeScreen()
+        requestData()
+
     }
     
     //MARK: -- IBActions

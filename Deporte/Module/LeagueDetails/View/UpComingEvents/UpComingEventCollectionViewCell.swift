@@ -24,11 +24,11 @@ class UpComingEventCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     func setUpView(){
-        awayTeamLabel.text = event?.strAwayTeam ?? ""
-        homeTeamLabel.text = event?.strHomeTeam ?? ""
-        leagueNameLabel.text = event?.strLeague ?? ""
-        roundLabel.text = "Week \(event?.intRound ?? "")"
-        timeLabel.text = "\(event?.strTime?.prefix(5) ?? "")"
+        awayTeamLabel.text = event?.strAwayTeam ?? "no Name"
+        homeTeamLabel.text = event?.strHomeTeam ?? "No Name"
+        leagueNameLabel.text = event?.strLeague ?? "No League Name"
+        roundLabel.text = "Week \(event?.intRound ?? "1")"
+        timeLabel.text = "\(event?.strTime?.prefix(5) ?? "09:00")"
         dateLabel.text = event?.dateEvent?.getDateDayAsNumberAndMonthAsString()
                 if teams.count > 0 {
                     var list=teams.filter{(team) in

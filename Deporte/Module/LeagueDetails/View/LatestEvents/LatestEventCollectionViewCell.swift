@@ -24,9 +24,9 @@ class LatestEventCollectionViewCell: UICollectionViewCell {
         
     }
     func setUpView() {
-        awayTeamNameLabel.text = event?.strAwayTeam ?? ""
-        homeTeamNameLabel.text = event?.strHomeTeam ?? ""
-        resultLabel.text = "\(String(describing: event?.intAwayScore ?? "")):\(String(describing: event?.intHomeScore ?? ""))"
+        awayTeamNameLabel.text = event?.strAwayTeam ?? "No Name"
+        homeTeamNameLabel.text = event?.strHomeTeam ?? "No Name"
+        resultLabel.text = "\(String(describing: event?.intAwayScore ?? "0")):\(String(describing: event?.intHomeScore ?? "0"))"
                 if teams.count > 0 {
                     var list=teams.filter{(team) in
                     team.idTeam == event?.idHomeTeam ?? "00"

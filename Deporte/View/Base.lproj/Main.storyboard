@@ -177,30 +177,18 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no internet available, please check connectivity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U4-wN-3Hh">
-                                <rect key="frame" x="16" y="50" width="382" height="796"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jPW-Nd-fJB" firstAttribute="top" secondItem="cUY-Wn-sKc" secondAttribute="top" id="3bN-4G-RHl"/>
                             <constraint firstItem="jPW-Nd-fJB" firstAttribute="leading" secondItem="cUY-Wn-sKc" secondAttribute="leading" id="7JL-Ny-lT2"/>
-                            <constraint firstItem="8U4-wN-3Hh" firstAttribute="centerY" secondItem="DT9-mg-GLJ" secondAttribute="centerY" id="7YG-oz-7y4"/>
-                            <constraint firstItem="8U4-wN-3Hh" firstAttribute="leading" secondItem="cUY-Wn-sKc" secondAttribute="leading" constant="16" id="SPA-Da-6zp"/>
-                            <constraint firstItem="cUY-Wn-sKc" firstAttribute="bottom" secondItem="8U4-wN-3Hh" secondAttribute="bottom" constant="16" id="bzf-uT-f3f"/>
-                            <constraint firstItem="cUY-Wn-sKc" firstAttribute="trailing" secondItem="8U4-wN-3Hh" secondAttribute="trailing" constant="16" id="hm9-9g-eII"/>
                             <constraint firstAttribute="bottom" secondItem="jPW-Nd-fJB" secondAttribute="bottom" constant="148" id="lqV-7R-FVa"/>
                             <constraint firstItem="jPW-Nd-fJB" firstAttribute="trailing" secondItem="cUY-Wn-sKc" secondAttribute="trailing" id="oJV-6s-aCI"/>
-                            <constraint firstItem="8U4-wN-3Hh" firstAttribute="centerX" secondItem="DT9-mg-GLJ" secondAttribute="centerX" id="ykS-AU-J3L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cUY-Wn-sKc"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sports" id="VdL-Xw-jtl"/>
                     <connections>
-                        <outlet property="internetMsgLbl" destination="8U4-wN-3Hh" id="xO9-rU-Zti"/>
                         <outlet property="myCollectionView" destination="jPW-Nd-fJB" id="Y9R-yV-G1v"/>
                     </connections>
                 </viewController>
@@ -462,19 +450,32 @@
                                     <constraint firstItem="Ef9-FH-wdU" firstAttribute="height" secondItem="Cd3-wl-HLS" secondAttribute="height" multiplier="0.98044" priority="250" constant="-68.195519999999988" id="ssu-IX-WnN"/>
                                 </constraints>
                             </scrollView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noConnection" translatesAutoresizingMaskIntoConstraints="NO" id="3Gp-OQ-w1t">
+                                <rect key="frame" x="0.0" y="269" width="414" height="293"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="K4i-Fw-Ohn" firstAttribute="trailing" secondItem="3Gp-OQ-w1t" secondAttribute="trailing" id="0fG-Xd-8be"/>
+                            <constraint firstItem="3Gp-OQ-w1t" firstAttribute="top" secondItem="K4i-Fw-Ohn" secondAttribute="top" constant="225" id="5hQ-BN-JgK"/>
                             <constraint firstItem="Cd3-wl-HLS" firstAttribute="leading" secondItem="K4i-Fw-Ohn" secondAttribute="leading" id="65U-nC-xvt"/>
+                            <constraint firstItem="3Gp-OQ-w1t" firstAttribute="top" secondItem="K4i-Fw-Ohn" secondAttribute="top" priority="250" constant="225" id="6r3-e9-cTk"/>
+                            <constraint firstItem="K4i-Fw-Ohn" firstAttribute="bottom" secondItem="3Gp-OQ-w1t" secondAttribute="bottom" constant="300" id="SZi-u1-uHO"/>
+                            <constraint firstItem="K4i-Fw-Ohn" firstAttribute="bottom" secondItem="3Gp-OQ-w1t" secondAttribute="bottom" priority="250" constant="300" id="Tiy-YW-228"/>
                             <constraint firstItem="Cd3-wl-HLS" firstAttribute="top" secondItem="K4i-Fw-Ohn" secondAttribute="top" id="b3T-4K-oK4"/>
                             <constraint firstItem="Cd3-wl-HLS" firstAttribute="bottom" secondItem="K4i-Fw-Ohn" secondAttribute="bottom" id="eXm-fF-cmU"/>
                             <constraint firstItem="Cd3-wl-HLS" firstAttribute="trailing" secondItem="K4i-Fw-Ohn" secondAttribute="trailing" id="jYC-np-MWu"/>
+                            <constraint firstItem="3Gp-OQ-w1t" firstAttribute="leading" secondItem="K4i-Fw-Ohn" secondAttribute="leading" id="rdv-Fm-7SK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K4i-Fw-Ohn"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ioo-Qb-UOm"/>
                     <connections>
                         <outlet property="favoriteButton" destination="ilV-Jn-Qci" id="cwz-pp-Ewz"/>
+                        <outlet property="imageViewProblem" destination="3Gp-OQ-w1t" id="cM9-R0-BCz"/>
+                        <outlet property="label1" destination="VZr-hq-lJS" id="Az5-MK-XN5"/>
+                        <outlet property="label2" destination="y6l-TT-8Rk" id="uSV-jU-Ov0"/>
+                        <outlet property="label3" destination="43S-Mx-M4R" id="yij-px-Vig"/>
                         <outlet property="latestEventCollectionView" destination="9eb-Nn-tE6" id="QI2-Ke-1FK"/>
                         <outlet property="latesteEventCollectionHeight" destination="AB4-cu-VmJ" id="0zV-N2-XVV"/>
                         <outlet property="leagueDetailsScroll" destination="Cd3-wl-HLS" id="fQt-2G-pDb"/>
@@ -900,6 +901,7 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="instagram" width="512" height="512"/>
         <image name="left-chevron" width="256" height="256"/>
+        <image name="noConnection" width="2000" height="2000"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="twitter" width="512" height="512"/>
         <image name="world-wide-web" width="512" height="512"/>

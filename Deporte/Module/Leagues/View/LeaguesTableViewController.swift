@@ -38,6 +38,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol{
         startIndicator()
         
         initializeLeaguesPresenterAndGetData()
+        requestData()
         refreshingLeaguesScreen()
     }
     

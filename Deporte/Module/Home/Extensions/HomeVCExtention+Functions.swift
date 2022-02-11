@@ -22,14 +22,13 @@ extension HomeSportsViewController{
         self.view.addSubview(myIndicator)
         myIndicator.startAnimating()
     }
-    func initializeHomePresenterAndGetData(){
+    func initializeHomePresenter(){
         homePresenter = HomePresenter(sportsApi: AllSportsAPI())
         homePresenter.attachView(homeView: self)
-        configureCollectionView()
-        homePresenter.getAllSports()
     }
     
     @objc func updatingCollectionView() {
+        self.myCollectionView.backgroundView = nil
         self.myCollectionView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.myCollectionView.refreshControl?.endRefreshing()
@@ -37,27 +36,30 @@ extension HomeSportsViewController{
         self.myIndicator.stopAnimating()
     }
     
-    func alertWillPresent(){
-        let alert = UIAlertController(title: "Network Error!!", message: "The device isn't connected to network, please re-check the internet connectivity", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func checkConnectivity(){
+
+
+    @objc func requestData(){
         if NetworkMonitor.shared.isConnected{
-            internetMsgLbl.isHidden = true
-            myCollectionView.isHidden = false
-            initializeHomePresenterAndGetData()
+            homePresenter.getAllSports()
         }else{
-            internetMsgLbl.isHidden = false
-            myCollectionView.isHidden = true
-            myIndicator.stopAnimating()
-            alertWillPresent()
+            noConnection()
+        }
+    }
+    func noConnection(){
+        if homePresenter.mysports.count < 1 {
+            myCollectionView.setBackgroundNoNetwork()
+        }
+        myIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.alertNoNetworkPresent()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.myCollectionView.refreshControl?.endRefreshing()
         }
     }
     
     func refreshingHomeScreen(){
-        refreshControl.addTarget(self, action: #selector(updatingCollectionView), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(requestData), for: .valueChanged)
         myCollectionView.refreshControl = refreshControl
     }
 }
